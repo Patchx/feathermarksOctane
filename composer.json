@@ -12,6 +12,7 @@
         "laravel/octane": "^1.1",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
         "spiral/roadrunner": "^2.0"
     },
     "require-dev": {

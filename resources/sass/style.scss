@@ -1,0 +1,38 @@
+
+[v-cloak] {display: none}
+
+#homepage_content * {
+	font-size: 16px;
+}
+
+#hover-main-menu {
+	position: fixed;
+	width: 150px;
+	top: 44px;
+	right: 10px;
+	background-color: #FFFFFF;
+	border: 2px solid rgba(0, 0, 0, 0.075);
+	border-radius: 3px;
+	padding: 10px 20px;
+	z-index: 100;
+}
+
+#hover-main-menu ul li {
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.code-style {
+	font-family: "Courier New";
+	font-weight: 600;
+}
+
+.gsc-control-cse {
+	padding: 0px !important;
+}
+
+.inline-block {display: inline-block;}
+
+.links-list-div {
+	font-size: 1.4rem; 
+}
