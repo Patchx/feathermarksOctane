@@ -20,7 +20,7 @@ const mix = require('laravel-mix');
  // ------
  // - JS -
  // ------
-
+ mix.vue();
  mix.js('resources/js/app.js', 'public/wp/js').version();
 
  mix.js('resources/js/pages/home-page.js', 'public/wp/js')
