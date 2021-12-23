@@ -1,0 +1,29 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "local": "run-s tab:build:npm-watch tab:build:open-site-octane",
+        "old-local": "run-s tab:build:npm-watch tab:build:open-site",
+        "prod": "npm run production",
+        "production": "mix --production",
+        "tab:build:npm-watch": "ttab -t 'NPM Watch' npm run watch",
+        "tab:build:open-site": "ttab -t 'Openning Site' php artisan serve",
+        "tab:build:open-site-octane": "ttab -t 'Openning Site' php artisan octane:start",
+        "tab:build:js-tests": "ttab -t 'Js Tests' npm run test",
+        "tab:build:php-tests": "ttab -t 'PHP Tests' phpunit",
+        "test": "mocha-webpack js_tests/**/*.spec.js --require test-setup",
+        "test-all": "run-s tab:build:js-tests tab:build:php-tests"
+    },
+    "devDependencies": {
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "npm-run-all": "^4.1.5",
+        "postcss": "^8.1.14",
+        "ttab": "^0.6.1"
+    }
+}
