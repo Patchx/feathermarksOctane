@@ -8,7 +8,7 @@ use Auth;
 
 use App\Classes\Repositories\CategoryRepository;
 
-use App\Category;
+use App\Models\Category;
 
 class HomeController extends Controller
 {

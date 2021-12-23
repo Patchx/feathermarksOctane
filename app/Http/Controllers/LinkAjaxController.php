@@ -11,8 +11,8 @@ use App\Http\Requests\EditLinkRequest;
 
 use App\Classes\Repositories\CategoryRepository;
 
-use App\Category;
-use App\Link;
+use App\Models\Category;
+use App\Models\Link;
 
 class LinkAjaxController extends Controller
 {
