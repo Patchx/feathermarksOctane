@@ -19,28 +19,28 @@ use Illuminate\Support\Facades\Route;
 // - LinkAjaxController -
 // ---------------------
 
-Route::post('/links/create', 'LinkAjaxController@postCreate');
-Route::post('/links/delete/{link_id}', 'LinkAjaxController@postDelete');
-Route::post('/links/edit/{link_id}', 'LinkAjaxController@postEdit');
-Route::get('/links/my-links', 'LinkAjaxController@getMyLinks');
-Route::post('/links/run-feather-command', 'LinkAjaxController@postRunFeatherCommand');
-Route::get('/links/search-my-links', 'LinkAjaxController@getSearchMyLinks');
+Route::post('/links/create', 'App\Http\Controllers\LinkAjaxController@postCreate');
+Route::post('/links/delete/{link_id}', 'App\Http\Controllers\LinkAjaxController@postDelete');
+Route::post('/links/edit/{link_id}', 'App\Http\Controllers\LinkAjaxController@postEdit');
+Route::get('/links/my-links', 'App\Http\Controllers\LinkAjaxController@getMyLinks');
+Route::post('/links/run-feather-command', 'App\Http\Controllers\LinkAjaxController@postRunFeatherCommand');
+Route::get('/links/search-my-links', 'App\Http\Controllers\LinkAjaxController@getSearchMyLinks');
 
 // ---------------------
 // - UrlAjaxController -
 // ---------------------
 
-Route::get('/url/title/{url}', 'UrlAjaxController@getTitle');
+Route::get('/url/title/{url}', 'App\Http\Controllers\UrlAjaxController@getTitle');
 
 // === non-AJAX routes ===
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 // -----------------------
 // - StaticWebController -
 // -----------------------
 
-Route::get('/search-results', 'StaticWebController@getSearchResults');
-Route::get('/', 'StaticWebController@getIndex');
+Route::get('/search-results', 'App\Http\Controllers\StaticWebController@getSearchResults');
+Route::get('/', 'App\Http\Controllers\StaticWebController@getIndex');

@@ -8,7 +8,7 @@ class StaticWebController extends Controller
 {
     public function getIndex()
     {
-    	return view('welcome');
+    	return view('main-landing-page');
     }
 
     public function getSearchResults()
