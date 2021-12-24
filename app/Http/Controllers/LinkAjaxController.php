@@ -38,17 +38,25 @@ class LinkAjaxController extends Controller
         ]);
     }
 
+    // - This package is broken for this project, but you can use it's examples for how to write the SQL queries:
+    // - https://github.com/yabhq/laravel-scout-mysql-driver
+    // --
     public function getSearchMyLinks(
         CategoryRepository $category_repo,
         Request $request
     ) {
         $user = Auth::user();
         $category = $category_repo->getUserCategory($request->cat_id, $user);
+        $user_search = $request->q;
 
-        $links = Link::search($request->q)
-                    ->where('user_id', $user->custom_id)
-                    ->where('category_id', $category->custom_id)
-                    ->get();
+        $links = Link::where('user_id', $user->custom_id)
+            ->where('category_id', $category->custom_id)
+            ->where(function($query) use ($user_search) {
+                $query->where('name', 'like', '%' . $user_search . '%')
+                    ->orWhere('url', 'like', '%' . $user_search . '%')
+                    ->orWhere('search_phrase', 'like', '%' . $user_search . '%');
+            })
+            ->get();
 
         return json_encode([
             'status' => 'success',
