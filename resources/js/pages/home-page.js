@@ -304,6 +304,12 @@ import edit_link_modal from '../components/EditLinkModal';
 			},
 
 			deleteLink: function(link_id) {
+				var confirmation_prompt = "Are you sure you want to delete that link?";
+
+				if (confirm(confirmation_prompt) !== true) {
+					return null;
+				}
+
 				this.created_bookmark = null;
 				var request_url = '/links/delete/' + link_id;
 
