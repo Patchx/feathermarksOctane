@@ -226,10 +226,24 @@
             <p>System Commands:</p>
 
             <span class="code-style">//a</span> <span>&nbsp;List all bookmarks</span>
-            <br>
-            <span class="code-style">//b</span> <span>&nbsp; Create a new bookmark</span>
-            <br>
-            <span class="code-style">//s</span> <span>&nbsp; Switch to search engine</span>
+                        
+            <span
+                v-if="mode !== 'add-bookmark'"
+                v-cloak
+            >
+                <br>
+                <span class="code-style">//b</span>
+                <span>&nbsp; Create a new bookmark</span>
+            </span>
+                        
+            <span
+                v-if="mode !== 'search'"
+                v-cloak
+            >
+                <br>
+                <span class="code-style">//s</span>
+                <span>&nbsp; Switch to search engine</span>
+            </span>
             <br>
         </div>
     </div>
