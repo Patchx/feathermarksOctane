@@ -26,6 +26,14 @@
                 <label>@{{mainLabelText}}</label>
 
                 <div class="input-group">
+                    <div 
+                        v-if="showSearchbarPrepend"
+                        v-cloak
+                        class="input-group-prepend"
+                    >
+                        <span class="input-group-text" id="basic-addon1">/</span>
+                    </div>
+
                     <input 
                         id="search-bar"
                         v-model="main_input_text"

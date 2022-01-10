@@ -31,6 +31,7 @@ import edit_link_modal from '../components/EditLinkModal';
 			}
 
 			vue_app.created_bookmark = response.data.link;
+			vue_app.draft_bookmark = getEmptyBookmark();
 			vue_app.activateSearchMode(true);
 		}).catch((error) => {
 			alert(error.response.data.message);
@@ -95,6 +96,15 @@ import edit_link_modal from '../components/EditLinkModal';
 		}
 
 		return 'Add an instaopen command (optional)';
+	}
+
+	function getEmptyBookmark() {
+		return {
+			url: '',
+			name: '',
+			search_phrase: '',
+			instaopen_command: '',
+		};
 	}
 
 	function getTitleFromUrl(input_url, callback) { 
@@ -165,18 +175,11 @@ import edit_link_modal from '../components/EditLinkModal';
 
 		data: {
 			created_bookmark: null,
-
-			draft_bookmark: {
-				url: '',
-				name: '',
-				search_phrase: '',
-				instaopen_command: '',
-			},
-
+			draft_bookmark: getEmptyBookmark(),
 			main_input_text: '',
 			mode: 'search',
-
 			search_result_bookmarks: [],
+			show_searchbar_prepend: false,
 			temporary_msg: '',
 			visible_bookmarks: [],
 		},
@@ -226,6 +229,17 @@ import edit_link_modal from '../components/EditLinkModal';
 				}
 
 				return this.main_input_text !== '';
+			},
+
+			showSearchbarPrepend: function() {
+				if (this.draft_bookmark.url !== ''
+					&& this.draft_bookmark.name !== ''
+					&& this.draft_bookmark.search_phrase !== ''
+				) {
+					return true;
+				}
+
+				return false;
 			},
 		},
 
