@@ -20,8 +20,7 @@
                 <span>Edit Link</span>
 
                 <span 
-                    class="float-right text-muted"
-                    style="cursor: pointer"
+                    class="float-right text-muted cursor-pointer"
                     v-on:click="closeModal"
                 >X</span>
             </h1>

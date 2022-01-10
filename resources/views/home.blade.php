@@ -95,13 +95,13 @@
             <p v-for="bookmark in visible_bookmarks">
                 <i
                     v-on:click="deleteLink(bookmark.custom_id)" 
-                    class="fas fa-trash text-muted mr-25"
+                    class="fas fa-trash text-muted cursor-pointer mr-25"
                     style="font-size:18px"
                 ></i>
 
                 <i
                     v-on:click="openLinkEditor(bookmark)" 
-                    class="fas fa-edit text-muted mr-25"
+                    class="fas fa-edit text-muted cursor-pointer mr-25"
                     style="font-size:18px"
                 ></i>
 
@@ -137,13 +137,13 @@
 
             <i
                 v-on:click="deleteLink(created_bookmark.custom_id)" 
-                class="fas fa-trash text-muted mr-25"
+                class="fas fa-trash text-muted cursor-pointer mr-25"
                 style="font-size:18px"
             ></i>
 
             <i
                 v-on:click="openLinkEditor(created_bookmark)" 
-                class="fas fa-edit text-muted mr-25"
+                class="fas fa-edit text-muted cursor-pointer mr-25"
                 style="font-size:18px"
             ></i>
 
@@ -179,13 +179,13 @@
             <p v-for="bookmark in search_result_bookmarks">
                 <i
                     v-on:click="deleteLink(bookmark.custom_id)" 
-                    class="fas fa-trash text-muted mr-25"
+                    class="fas fa-trash text-muted cursor-pointer mr-25"
                     style="font-size:18px"
                 ></i>
 
                 <i
                     v-on:click="openLinkEditor(bookmark)" 
-                    class="fas fa-edit text-muted mr-25"
+                    class="fas fa-edit text-muted cursor-pointer mr-25"
                     style="font-size:18px"
                 ></i>
 
