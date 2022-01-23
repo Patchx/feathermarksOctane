@@ -18,6 +18,7 @@ class Link extends AbstractModel
         'url',
         'search_phrase',
         'instaopen_command',
+        'recent_uses',
     ];
 
     // -----------------
