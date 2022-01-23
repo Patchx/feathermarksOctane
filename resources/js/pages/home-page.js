@@ -78,7 +78,7 @@ import edit_link_modal from '../components/EditLinkModal';
 		}
 
 		axios.get(request_url).then((response) => {
-			vue_app.visible_bookmarks = response.data.links;
+			vue_app.search_result_bookmarks = response.data.links;
 		});
 	}
 
@@ -181,7 +181,6 @@ import edit_link_modal from '../components/EditLinkModal';
 			search_result_bookmarks: [],
 			show_searchbar_prepend: false,
 			temporary_msg: '',
-			visible_bookmarks: [],
 		},
 
 		components: {
@@ -249,20 +248,17 @@ import edit_link_modal from '../components/EditLinkModal';
 
 		watch: {
 			main_input_text: function(after, before) {
-				if (after.length > 0) {
-					this.temporary_msg = '';
-					this.created_bookmark = null;
+				this.temporary_msg = '';
+				this.created_bookmark = null;
 
-					if (this.mode === 'search') {
-						debouncedSearchMyLinks(this);
-					}
+				if (after.length < 1) {
+					return this.search_result_bookmarks = [];
 				}
 
-				if (after.length > 0
-					&& after[0] !== '/'
+				if (after[0] !== '/'
 					&& this.mode === 'feather'
 				) {
-					this.activateSearchMode(false);
+					return this.activateSearchMode(false);
 				}
 
 				if (after.length === 1
@@ -271,8 +267,12 @@ import edit_link_modal from '../components/EditLinkModal';
 					this.mode = 'feather';
 				}
 
+				if (this.mode === 'search') {
+					return debouncedSearchMyLinks(this);
+				}
+
 				if (this.mode === 'feather') {
-					detectFeatherCommand(this);
+					return detectFeatherCommand(this);
 				}
 			},
 		},
@@ -285,7 +285,7 @@ import edit_link_modal from '../components/EditLinkModal';
 					this.main_input_text = '';
 				}
 
-				this.visible_bookmarks = [];
+				this.search_result_bookmarks = [];
 				this.mode = 'search';
 			},
 
@@ -299,7 +299,7 @@ import edit_link_modal from '../components/EditLinkModal';
 				this.draft_bookmark.search_phrase = '';
 				this.draft_bookmark.instaopen_command = '';
 
-				this.visible_bookmarks = [];
+				this.search_result_bookmarks = [];
 				this.mode = 'add-bookmark';
 			},
 
@@ -328,7 +328,7 @@ import edit_link_modal from '../components/EditLinkModal';
 			},
 
 			handleLinkEdited: function() {
-				this.visible_bookmarks = [];
+				this.search_result_bookmarks = [];
 				this.main_input_text = '';
 				this.mode = 'search';
 				this.temporary_msg = 'Link edited successfully!';
