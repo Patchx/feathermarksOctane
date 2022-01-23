@@ -163,6 +163,8 @@ class LinkAjaxController extends Controller
             return json_encode(['status' => 'command_not_found']);
         }
 
+        $link->addNewUsage(now()->timestamp);
+
         return json_encode([
             'status' => 'success',
             'directive' => 'open_link',
