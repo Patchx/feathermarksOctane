@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Jobs\CalcLinkUsageScore;
+
 class Link extends AbstractModel
 {
     // --------------
@@ -20,6 +22,7 @@ class Link extends AbstractModel
         'instaopen_command',
         'recent_uses',
         'recent_usage_score',
+        'usage_score_calculated_on',
     ];
 
     // -----------------
@@ -52,6 +55,8 @@ class Link extends AbstractModel
         array_unshift($recent_uses, $unix_time);
         $this->recent_uses = json_encode($recent_uses);
         $this->save();
+
+        CalcLinkUsageScore::dispatch($this);
 
         return ['status' => 'success'];
     }
