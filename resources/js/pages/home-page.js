@@ -3,6 +3,7 @@
 // - Dependencies -
 // ----------------
 
+import bookmark_result_component from '../components/BookmarkResult';
 import edit_link_modal from '../components/EditLinkModal';
 
 // -----------------
@@ -188,6 +189,7 @@ import edit_link_modal from '../components/EditLinkModal';
 		},
 
 		components: {
+			'bookmark-result': bookmark_result_component,
 			'edit-link-modal': edit_link_modal,
 		},
 

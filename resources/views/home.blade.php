@@ -93,33 +93,9 @@
             <p>My Bookmarks</p>
 
             <p v-for="bookmark in search_result_bookmarks">
-                <i
-                    v-on:click="deleteLink(bookmark.custom_id)" 
-                    class="fas fa-trash text-muted cursor-pointer mr-25"
-                    style="font-size:18px"
-                ></i>
-
-                <i
-                    v-on:click="openLinkEditor(bookmark)" 
-                    class="fas fa-edit text-muted cursor-pointer mr-25"
-                    style="font-size:18px"
-                ></i>
-
-                <a
-                    :href="bookmark.url"
-                    style="font-size:24px"
-                >@{{bookmark.name}}</a>
-
-                <span
-                    v-if="bookmark.instaopen_command !== ''"
-                    v-cloak
-                >
-                    <br>
-                    <span class="text-muted">
-                        <span>Instaopen Command:&nbsp;</span>
-                        <strong class="code-style">/@{{bookmark.instaopen_command}}</strong>
-                    </span>
-                </span>
+                <bookmark-result
+                    :bookmark="bookmark"
+                ></bookmark-result>
             </p>
         </div>
     </div>
@@ -135,33 +111,9 @@
         >
             <p>New Bookmark</p>
 
-            <i
-                v-on:click="deleteLink(created_bookmark.custom_id)" 
-                class="fas fa-trash text-muted cursor-pointer mr-25"
-                style="font-size:18px"
-            ></i>
-
-            <i
-                v-on:click="openLinkEditor(created_bookmark)" 
-                class="fas fa-edit text-muted cursor-pointer mr-25"
-                style="font-size:18px"
-            ></i>
-
-            <a
-                :href="created_bookmark.url"
-                style="font-size:24px"
-            >@{{created_bookmark.name}}</a>
-
-            <span
-                v-if="created_bookmark.instaopen_command !== ''"
-                v-cloak
-            >
-                <br>
-                <span class="text-muted">
-                    <span>Instaopen Command:&nbsp;</span>
-                    <strong class="code-style">/@{{created_bookmark.instaopen_command}}</strong>
-                </span>
-            </span>
+            <bookmark-result
+                :bookmark="created_bookmark"
+            ></bookmark-result>
         </div>
     </div>
 
