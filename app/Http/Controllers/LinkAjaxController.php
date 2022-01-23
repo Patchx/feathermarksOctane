@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Auth;
-
+use App\Classes\Repositories\CategoryRepository;
 use App\Http\Requests\CreateLinkRequest;
 use App\Http\Requests\EditLinkRequest;
-
-use App\Classes\Repositories\CategoryRepository;
-
 use App\Models\Category;
 use App\Models\Link;
+use Auth;
+use Illuminate\Http\Request;
 
 class LinkAjaxController extends Controller
 {
@@ -29,8 +25,8 @@ class LinkAjaxController extends Controller
         $category = $category_repo->getUserCategory($request->cat_id, $user);
 
         $links = Link::where('user_id', $user->custom_id)
-                    ->where('category_id', $category->custom_id)
-                    ->get();
+            ->where('category_id', $category->custom_id)
+            ->get();
 
         return json_encode([
             'status' => 'success',
@@ -109,8 +105,8 @@ class LinkAjaxController extends Controller
         $user = Auth::user();
 
         $link = Link::where('custom_id', $link_id)
-                    ->where('user_id', $user->custom_id)
-                    ->first();
+            ->where('user_id', $user->custom_id)
+            ->first();
 
         if ($link !== null) {
             $link->delete();
@@ -126,8 +122,8 @@ class LinkAjaxController extends Controller
         $user = Auth::user();
 
         $link = Link::where('custom_id', $link_id)
-                    ->where('user_id', $user->custom_id)
-                    ->first();
+            ->where('user_id', $user->custom_id)
+            ->first();
 
         if ($link === null) {
             return json_encode(['status' => 'link_not_found']);
@@ -159,9 +155,9 @@ class LinkAjaxController extends Controller
         $command = trim($request->command, ' /');
 
         $link = Link::where('user_id', $user->custom_id)
-                    ->where('instaopen_command', $command)
-                    ->where('category_id', $category->custom_id)
-                    ->first();
+            ->where('instaopen_command', $command)
+            ->where('category_id', $category->custom_id)
+            ->first();
 
         if ($link === null) {
             return json_encode(['status' => 'command_not_found']);
@@ -172,6 +168,23 @@ class LinkAjaxController extends Controller
             'directive' => 'open_link',
             'url' => $link->url,
         ]);
+    }
+
+    public function postTrackClick(Request $request)
+    {
+        $user = Auth::user();
+
+        $link = Link::where('custom_id', $request->link_id)
+            ->where('user_id', $user->custom_id)
+            ->first();
+
+        if ($link === null) {
+            return json_encode(['status' => 'link_not_found']);
+        }
+
+        // stuff goes here
+
+        return json_encode(['status' => 'success']);
     }
 
     // -------------------

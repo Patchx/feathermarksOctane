@@ -25,6 +25,7 @@ Route::post('/links/edit/{link_id}', 'App\Http\Controllers\LinkAjaxController@po
 Route::get('/links/my-links', 'App\Http\Controllers\LinkAjaxController@getMyLinks');
 Route::post('/links/run-feather-command', 'App\Http\Controllers\LinkAjaxController@postRunFeatherCommand');
 Route::get('/links/search-my-links', 'App\Http\Controllers\LinkAjaxController@getSearchMyLinks');
+Route::post('/links/track-click', 'App\Http\Controllers\LinkAjaxController@postTrackClick');
 
 // ---------------------
 // - UrlAjaxController -

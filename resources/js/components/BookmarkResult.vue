@@ -32,6 +32,26 @@
 </template>
 
 <script>
+
+// ---------------------
+// - Private Functions -
+// ---------------------
+
+function trackLinkClick(this_component, callback) {
+    axios.post('/links/track-click', {
+        link_id: this_component.bookmark.custom_id,
+    }).then((response) => {
+        return callback();
+    }).catch((error) => {
+        console.log(error);
+        return callback();
+    });
+}
+
+// ----------
+// - Export -
+// ----------
+
 module.exports = (function() {
     return {
         props: ['bookmark'],
@@ -42,13 +62,15 @@ module.exports = (function() {
 
         methods: {
             openBookmarkUrl: function(event) {
-                if (event.ctrlKey
-                    || event.metaKey
-                ) {
-                    return window.open(this.bookmark.url, '_blank');
-                }
+                trackLinkClick(this, () => {
+                    if (event.ctrlKey
+                        || event.metaKey
+                    ) {
+                        return window.open(this.bookmark.url, '_blank');
+                    }
 
-                window.location.href = this.bookmark.url;
+                    window.location.href = this.bookmark.url;
+                });
             },
         },
     };
