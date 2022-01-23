@@ -183,23 +183,7 @@ class LinkAjaxController extends Controller
             return json_encode(['status' => 'link_not_found']);
         }
 
-        $recent_uses = json_decode($link->recent_uses);
-
-        if (count($recent_uses) > 0
-            && $now->timestamp - $recent_uses[0] < 200
-        ) {
-            return json_encode(['status' => 'clicked_too_recently']);
-        }
-
-        while (count($recent_uses) > 4) {
-            array_pop($recent_uses);
-        }
-
-        array_unshift($recent_uses, $now->timestamp);
-        $link->recent_uses = json_encode($recent_uses);
-        $link->save();
-
-        return json_encode(['status' => 'success']);
+        return json_encode($link->addNewUsage($now->timestamp));
     }
 
     // -------------------
