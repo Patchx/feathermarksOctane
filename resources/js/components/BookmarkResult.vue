@@ -12,10 +12,11 @@
             style="font-size:18px"
         ></i>
 
-        <a
-            :href="bookmark.url"
+        <span
+            v-on:click="openBookmarkUrl"
+            class="cursor-pointer btn-link"
             style="font-size:24px"
-        >{{bookmark.name}}</a>
+        >{{bookmark.name}}</span>
 
         <span
             v-if="bookmark.instaopen_command !== ''"
@@ -39,7 +40,17 @@ module.exports = (function() {
             return {};
         },
 
-        methods: {},
+        methods: {
+            openBookmarkUrl: function(event) {
+                if (event.ctrlKey
+                    || event.metaKey
+                ) {
+                    return window.open(this.bookmark.url, '_blank');
+                }
+
+                window.location.href = this.bookmark.url;
+            },
+        },
     };
 })();
 </script>
