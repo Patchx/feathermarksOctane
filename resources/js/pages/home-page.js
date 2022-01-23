@@ -150,6 +150,10 @@ import edit_link_modal from '../components/EditLinkModal';
 	}
 
 	function searchMyLinks(vue_app) {
+		if (vue_app.main_input_text === '') {
+			return null;
+		}
+
 		const params = new URLSearchParams(window.location.search);
 		var category_id = params.get('cat_id');
 		
