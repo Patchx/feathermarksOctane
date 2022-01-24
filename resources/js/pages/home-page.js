@@ -16,15 +16,12 @@ import edit_link_modal from '../components/EditLinkModal';
 	// ---------------------
 
 	function createLink(vue_app) {
-		const params = new URLSearchParams(window.location.search);
-		var category_id = params.get('cat_id');
-
 		axios.post('/links/create', {
 			name: vue_app.draft_bookmark.name,
 			url: vue_app.draft_bookmark.url,
 			search_phrase: vue_app.draft_bookmark.search_phrase,
 			instaopen_command: vue_app.draft_bookmark.instaopen_command,
-			category_id: category_id,
+			category_id: vue_app.category_id,
 		}).then((response) => {
 			if (response.data.status !== 'success') {
 				console.log(response);
@@ -70,12 +67,10 @@ import edit_link_modal from '../components/EditLinkModal';
 	}
 
 	function fetchAllBookmarks(vue_app) {
-		const params = new URLSearchParams(window.location.search);
-		var category_id = params.get('cat_id');
 		var request_url = '/links/my-links';
 
-		if (category_id !== null) {
-			request_url += '?cat_id=' + category_id;
+		if (vue_app.category_id !== null) {
+			request_url += '?cat_id=' + vue_app.category_id;
 		}
 
 		axios.get(request_url).then((response) => {
@@ -148,19 +143,24 @@ import edit_link_modal from '../components/EditLinkModal';
 		vue_app.draft_bookmark.instaopen_command = vue_app.main_input_text;
 		vue_app.main_input_text = '';
 		createLink(vue_app);
+	}	
+
+	function loadFrequentlyUsedLinks(vue_app) {
+		var request_url = '/links/frequently-used/' + vue_app.category_id;
+
+		axios.get(request_url).then((response) => {
+			console.log(response.data);
+		});
 	}
 
 	function searchMyLinks(vue_app) {
 		if (vue_app.main_input_text === '') {
 			return null;
 		}
-
-		const params = new URLSearchParams(window.location.search);
-		var category_id = params.get('cat_id');
 		
 		var request_url = '/links/search-my-links?q=' 
-							+ vue_app.main_input_text
-							+ '&cat_id=' + category_id;
+			+ vue_app.main_input_text
+			+ '&cat_id=' + vue_app.category_id;
 
 		axios.get(request_url).then((response) => {
 			if (response.data.status === 'success') {
@@ -179,6 +179,7 @@ import edit_link_modal from '../components/EditLinkModal';
 		el: '#vue_app',
 
 		data: {
+			category_id: document.getElementById('active-category').value,
 			created_bookmark: null,
 			draft_bookmark: getEmptyBookmark(),
 			main_input_text: '',
@@ -250,6 +251,7 @@ import edit_link_modal from '../components/EditLinkModal';
 
 		mounted: function() {
 			document.getElementById("search-bar").focus();
+			loadFrequentlyUsedLinks(this);
 		},
 
 		watch: {
@@ -354,12 +356,10 @@ import edit_link_modal from '../components/EditLinkModal';
 				if (this.mode === 'feather') {
 					var command = this.main_input_text;
 					this.main_input_text = '';
-					const params = new URLSearchParams(window.location.search);
-					var category_id = params.get('cat_id');
 
 					axios.post('/links/run-feather-command', {
 						command: command,
-						category_id: category_id,
+						category_id: this.category_id,
 					}).then((response) => {
 						if (response.data.status === 'command_not_found') {
 							return null;

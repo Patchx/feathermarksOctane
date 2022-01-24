@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Auth;
-
 use App\Classes\Repositories\CategoryRepository;
-
 use App\Models\Category;
+use App\Models\Link;
+use Auth;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

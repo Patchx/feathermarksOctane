@@ -17,6 +17,12 @@
     id="homepage_content"
     class="ml-30 mr-30"
 >
+    <input
+        type="hidden"
+        id="active-category"
+        value="{{$active_category->custom_id}}"
+    />
+
     <div class="row">
         <div class="col-12">
             <div 

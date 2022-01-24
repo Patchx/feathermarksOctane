@@ -14,8 +14,8 @@ class CategoryRepository
 		}
 
 	    $category = Category::where('user_id', $user->custom_id)
-	                        ->where('custom_id', $category_id)
-	                        ->first();
+            ->where('custom_id', $category_id)
+            ->first();
 
 	    if ($category !== null) {
 	    	return $category;
@@ -35,8 +35,8 @@ class CategoryRepository
 		}
 
 		$category = Category::where('user_id', $user->custom_id)
-		                    ->where('custom_id', $user->latest_category_id)
-		                    ->first();
+            ->where('custom_id', $user->latest_category_id)
+            ->first();
 
 		if ($category !== null) {
 			return $category;

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/links/create', 'App\Http\Controllers\LinkAjaxController@postCreate');
 Route::post('/links/delete/{link_id}', 'App\Http\Controllers\LinkAjaxController@postDelete');
 Route::post('/links/edit/{link_id}', 'App\Http\Controllers\LinkAjaxController@postEdit');
+Route::get('/links/frequently-used/{category_id}', 'App\Http\Controllers\LinkAjaxController@getFrequentlyUsed');
 Route::get('/links/my-links', 'App\Http\Controllers\LinkAjaxController@getMyLinks');
 Route::post('/links/run-feather-command', 'App\Http\Controllers\LinkAjaxController@postRunFeatherCommand');
 Route::get('/links/search-my-links', 'App\Http\Controllers\LinkAjaxController@getSearchMyLinks');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Repositories\CategoryRepository;
+use App\Classes\Repositories\LinkRepository;
 use App\Http\Requests\CreateLinkRequest;
 use App\Http\Requests\EditLinkRequest;
 use App\Jobs\AddToLinkUsage;
@@ -17,6 +18,28 @@ class LinkAjaxController extends Controller
 	{
 		$this->middleware('auth');
 	}
+
+    public function getFrequentlyUsed(
+        LinkRepository $link_repo,
+        $category_id
+    ) {
+        $user = Auth::user();
+
+        $category = Category::where('custom_id', $category_id)
+            ->where('user_id', $user->custom_id)
+            ->first();
+
+        if ($category === null) {
+            return json_encode(['status' => 'category_not_found']);
+        }
+
+        $high_usage_links = $link_repo->frequentlyUsedLinks($category_id);
+
+        return json_encode([
+            'status' => 'success',
+            'links' => $high_usage_links,
+        ]);
+    }
 
     public function getMyLinks(
         CategoryRepository $category_repo,
