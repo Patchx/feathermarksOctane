@@ -5,6 +5,7 @@
 
 import bookmark_result_component from '../components/BookmarkResult';
 import edit_link_modal from '../components/EditLinkModal';
+import high_usage_link_component from '../components/HighUsageLink';
 
 // -----------------
 // - Main Function -
@@ -149,7 +150,11 @@ import edit_link_modal from '../components/EditLinkModal';
 		var request_url = '/links/frequently-used/' + vue_app.category_id;
 
 		axios.get(request_url).then((response) => {
-			console.log(response.data);
+			if (!response.data.links) {
+				return null;
+			}
+
+			vue_app.frequently_used_links = response.data.links;
 		});
 	}
 
@@ -182,6 +187,7 @@ import edit_link_modal from '../components/EditLinkModal';
 			category_id: document.getElementById('active-category').value,
 			created_bookmark: null,
 			draft_bookmark: getEmptyBookmark(),
+			frequently_used_links: [],
 			main_input_text: '',
 			mode: 'search',
 			search_result_bookmarks: [],
@@ -192,6 +198,7 @@ import edit_link_modal from '../components/EditLinkModal';
 		components: {
 			'bookmark-result': bookmark_result_component,
 			'edit-link-modal': edit_link_modal,
+			'high-usage-link': high_usage_link_component,
 		},
 
 		computed: {

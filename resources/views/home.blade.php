@@ -140,7 +140,7 @@
             v-else
             v-cloak
         >
-            <p>System Commands:</p>
+            <p class="text-center">System Commands:</p>
 
             <span class="code-style">//a</span> <span>&nbsp;List all bookmarks</span>
                         
@@ -162,6 +162,22 @@
                 <span>&nbsp; Switch to search engine</span>
             </span>
             <br>
+        </div>
+    </div>
+
+    <div
+        v-if="frequently_used_links.length > 0"
+        v-cloak
+    >
+        <div class="row mt-30 justify-content-center">
+            <p>Frequently Used Links</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <high-usage-link
+                v-for="bookmark in this.frequently_used_links"
+                :bookmark="bookmark"
+            ></high-usage-link>
         </div>
     </div>
 </div>
