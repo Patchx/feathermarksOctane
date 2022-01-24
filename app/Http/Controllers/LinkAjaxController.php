@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classes\Repositories\CategoryRepository;
 use App\Http\Requests\CreateLinkRequest;
 use App\Http\Requests\EditLinkRequest;
+use App\Jobs\AddToLinkUsage;
 use App\Models\Category;
 use App\Models\Link;
 use Auth;
@@ -163,7 +164,7 @@ class LinkAjaxController extends Controller
             return json_encode(['status' => 'command_not_found']);
         }
 
-        $link->addNewUsage(now()->timestamp);
+        AddToLinkUsage::dispatch($link, now()->timestamp);
 
         return json_encode([
             'status' => 'success',
@@ -185,7 +186,9 @@ class LinkAjaxController extends Controller
             return json_encode(['status' => 'link_not_found']);
         }
 
-        return json_encode($link->addNewUsage($now->timestamp));
+        AddToLinkUsage::dispatch($link, $now->timestamp);
+
+        return json_encode(['status' => 'success']);
     }
 
     // -------------------

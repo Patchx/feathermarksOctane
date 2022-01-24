@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Jobs\CalcLinkUsageScore;
-
 class Link extends AbstractModel
 {
     // --------------
@@ -32,32 +30,5 @@ class Link extends AbstractModel
     public function user()
     {
         return User::where('custom_id', $this->user_id)->first();
-    }
-
-    // ------------------
-    // - Public Methods -
-    // ------------------
-
-    public function addNewUsage($unix_time)
-    {
-        $recent_uses = json_decode($this->recent_uses);
-
-        if (count($recent_uses) > 0
-            && $unix_time - $recent_uses[0] < 200
-        ) {
-            return ['status' => 'clicked_too_recently'];
-        }
-
-        while (count($recent_uses) > 4) {
-            array_pop($recent_uses);
-        }
-
-        array_unshift($recent_uses, $unix_time);
-        $this->recent_uses = json_encode($recent_uses);
-        $this->save();
-
-        CalcLinkUsageScore::dispatch($this);
-
-        return ['status' => 'success'];
     }
 }
