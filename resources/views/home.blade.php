@@ -144,7 +144,7 @@
                 v-if="mode !== 'add-bookmark'"
                 v-cloak
             >
-                <span>Type:&nbsp;</span>
+                <span>Type&nbsp;</span>
                 <span class="code-style">//b</span>
                 <span>&nbsp; to create a new bookmark</span>
             </span>
@@ -153,7 +153,7 @@
                 v-if="mode !== 'search'"
                 v-cloak
             >
-                <span>Type:&nbsp;</span>
+                <span>Type&nbsp;</span>
                 <span class="code-style">//s</span>
                 <span>&nbsp; to switch back to search mode</span>
             </span>
