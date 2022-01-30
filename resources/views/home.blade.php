@@ -139,34 +139,30 @@
         <div
             v-else
             v-cloak
-        >
-            <p class="text-center">System Commands:</p>
-
-            <span class="code-style">//a</span> <span>&nbsp;List all bookmarks</span>
-                        
+        >                        
             <span
                 v-if="mode !== 'add-bookmark'"
                 v-cloak
             >
-                <br>
+                <span>Type:&nbsp;</span>
                 <span class="code-style">//b</span>
-                <span>&nbsp; Create a new bookmark</span>
+                <span>&nbsp; to create a new bookmark</span>
             </span>
                         
             <span
                 v-if="mode !== 'search'"
                 v-cloak
             >
-                <br>
+                <span>Type:&nbsp;</span>
                 <span class="code-style">//s</span>
-                <span>&nbsp; Switch to search engine</span>
+                <span>&nbsp; to switch back to search mode</span>
             </span>
             <br>
         </div>
     </div>
 
     <div
-        v-if="frequently_used_links.length > 0"
+        v-if="showFrequentlyUsedLinks"
         v-cloak
     >
         <div class="row mt-30 justify-content-center">

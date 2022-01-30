@@ -8,15 +8,11 @@
             width: 120px;
         "
     >
-        <div
-            style="
-                background-color: #3490dc;
-                border-radius: 10px;
-                color: white;
-                font-size: 25px;
-                padding: 20px 0px;
-            "
-        >{{defaultFaviconText}}</div>
+        <img
+            class="mb-10"
+            :src="faviconUrl"
+            width="60"
+        />
 
         <div
             style="font-size: 18px"
@@ -54,10 +50,10 @@ module.exports = (function() {
         },
 
         computed: {
-            defaultFaviconText: function() {
+            faviconUrl: function() {
                 return (
-                    this.bookmark.name[0].toUpperCase() 
-                    + this.bookmark.name.substring(1,4).toLowerCase()
+                    'https://www.google.com/s2/favicons?sz=64&domain_url='
+                    + this.bookmark.url
                 );
             },
         },

@@ -12,6 +12,12 @@
             style="font-size:18px"
         ></i>
 
+        <img
+            class="mr-10"
+            :src="faviconUrl"
+            height="24"
+        />
+
         <span
             v-on:click="openBookmarkUrl"
             class="cursor-pointer btn-link"
@@ -58,6 +64,15 @@ module.exports = (function() {
 
         data: function() {
             return {};
+        },
+
+        computed: {
+            faviconUrl: function() {
+                return (
+                    'https://www.google.com/s2/favicons?sz=32&domain_url='
+                    + this.bookmark.url
+                );
+            },
         },
 
         methods: {

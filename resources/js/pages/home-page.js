@@ -51,11 +51,6 @@ import high_usage_link_component from '../components/HighUsageLink';
 	})();
 
 	function detectFeatherCommand(vue_app) {
-		if (vue_app.main_input_text.trim() === '//a') {
-			vue_app.main_input_text = '';
-			return fetchAllBookmarks(vue_app);
-		}
-
 		if (vue_app.main_input_text.trim() === '//b') {
 			vue_app.main_input_text = '';
 			return vue_app.activateAddBookmarkMode();
@@ -65,18 +60,6 @@ import high_usage_link_component from '../components/HighUsageLink';
 			vue_app.main_input_text = '';
 			return vue_app.activateSearchMode(true);
 		}
-	}
-
-	function fetchAllBookmarks(vue_app) {
-		var request_url = '/links/my-links';
-
-		if (vue_app.category_id !== null) {
-			request_url += '?cat_id=' + vue_app.category_id;
-		}
-
-		axios.get(request_url).then((response) => {
-			vue_app.search_result_bookmarks = response.data.links;
-		});
 	}
 
 	function getBookmarkCreationTitle(vue_app) {
@@ -244,6 +227,14 @@ import high_usage_link_component from '../components/HighUsageLink';
 				return this.main_input_text !== '';
 			},
 
+			showFrequentlyUsedLinks: function() {
+				if (this.main_input_text.length > 0) {
+					return false;
+				}
+
+				return this.frequently_used_links.length > 0
+			},
+
 			showSearchbarPrepend: function() {
 				if (this.draft_bookmark.url !== ''
 					&& this.draft_bookmark.name !== ''
@@ -336,7 +327,6 @@ import high_usage_link_component from '../components/HighUsageLink';
 					}
 
 					this.search_result_bookmarks = [];
-					fetchAllBookmarks(this);
 				}).catch((error) => {
 					alert(error.response.data.message);
 				});
