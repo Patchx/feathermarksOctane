@@ -67,7 +67,7 @@ class AddToLinkUsage implements ShouldQueue
         $recent_uses = json_decode($this->link->recent_uses);
 
         $coefficients = [
-            10, 9, 7, 6, 4
+            10, 9, 8, 6, 5
         ];
 
         $score = 0;
