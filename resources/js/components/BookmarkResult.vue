@@ -1,39 +1,46 @@
 <template>
     <div>
-        <i
-            v-on:click="$root.deleteLink(bookmark.custom_id)" 
-            class="fas fa-trash text-muted cursor-pointer mr-25"
-            style="font-size:18px"
-        ></i>
-
-        <i
-            v-on:click="$root.openLinkEditor(bookmark)" 
-            class="fas fa-edit text-muted cursor-pointer mr-25"
-            style="font-size:18px"
-        ></i>
-
-        <img
-            class="mr-10"
-            :src="faviconUrl"
-            height="24"
-        />
-
-        <span
-            v-on:click="openBookmarkUrl"
-            class="cursor-pointer btn-link"
-            style="font-size:24px"
-        >{{bookmark.name}}</span>
-
-        <span
-            v-if="bookmark.instaopen_command !== ''"
-            v-cloak
+        <div 
+            class="inline-block align-top"
+            style="margin-top:7px;"
         >
-            <br>
-            <span class="text-muted">
-                <span>Instaopen Command:&nbsp;</span>
-                <strong class="code-style">/{{bookmark.instaopen_command}}</strong>
+            <i
+                v-on:click="$root.deleteLink(bookmark.custom_id)" 
+                class="fas fa-trash text-muted cursor-pointer mr-20"
+                style="font-size:18px"
+            ></i>
+
+            <i
+                v-on:click="$root.openLinkEditor(bookmark)" 
+                class="fas fa-edit text-muted cursor-pointer mr-10"
+                style="font-size:18px"
+            ></i>
+
+            <img
+                class="mr-10"
+                :src="faviconUrl"
+                height="24"
+            />
+        </div>
+
+        <div class="inline-block">
+            <span
+                v-on:click="openBookmarkUrl"
+                class="cursor-pointer btn-link"
+                style="font-size:24px"
+            >{{bookmark.name}}</span>
+
+            <span
+                v-if="bookmark.instaopen_command !== ''"
+                v-cloak
+            >
+                <br>
+                <span class="text-muted">
+                    <span>Instaopen Command:&nbsp;</span>
+                    <strong class="code-style">/{{bookmark.instaopen_command}}</strong>
+                </span>
             </span>
-        </span>
+        </div>
     </div>
 </template>
 

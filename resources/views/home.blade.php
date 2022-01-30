@@ -94,7 +94,7 @@
     >
         <div 
             class="mx-auto"
-            style="max-width:400px"
+            style="max-width:600px"
         >
             <p>My Bookmarks</p>
 
