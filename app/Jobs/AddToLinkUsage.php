@@ -14,9 +14,9 @@ class AddToLinkUsage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    const RECENT_USE_THRESHOLD = 200;
-    const SUBTRACTIVE_FACTOR = 1600000000;
-    const SCALING_FACTOR = 100000000;
+    const RECENT_USE_THRESHOLD = 100;
+    const SUBTRACTIVE_FACTOR = 1640000000;
+    const SCALING_FACTOR = 1000000;
 
     private $link;
     private $usage_unix_time;
