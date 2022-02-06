@@ -135,9 +135,11 @@
                 border-radius: 3px;
             "
         ></iframe>
+    </div>
 
+    <div class="row justify-content-center mt-25">
         <div
-            v-else
+            v-if="main_input_text.length < 2"
             v-cloak
         >                        
             <span

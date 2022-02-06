@@ -265,7 +265,9 @@ import high_usage_link_component from '../components/HighUsageLink';
 				this.temporary_msg = '';
 				this.created_bookmark = null;
 
-				if (after.length < 2) {
+				if (after.length < 2
+					&& after[0] !== '/'
+				) {
 					return this.search_result_bookmarks = [];
 				}
 
