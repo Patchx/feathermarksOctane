@@ -14,6 +14,10 @@ class AddToLinkUsage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    const RECENT_USE_THRESHOLD = 200;
+    const SUBTRACTIVE_FACTOR = 1600000000;
+    const SCALING_FACTOR = 100000000;
+
     private $link;
     private $usage_unix_time;
 
@@ -48,7 +52,7 @@ class AddToLinkUsage implements ShouldQueue
         $recent_uses = json_decode($this->link->recent_uses);
 
         if (count($recent_uses) > 0
-            && $this->usage_unix_time - $recent_uses[0] < 200
+            && $this->usage_unix_time - $recent_uses[0] < self::RECENT_USE_THRESHOLD
         ) {
             return ['status' => 'clicked_too_recently'];
         }
@@ -67,7 +71,7 @@ class AddToLinkUsage implements ShouldQueue
         $recent_uses = json_decode($this->link->recent_uses);
 
         $coefficients = [
-            10, 10, 8, 6, 6
+            10, 9, 8, 6, 5
         ];
 
         $score = 0;
@@ -75,10 +79,10 @@ class AddToLinkUsage implements ShouldQueue
         for ($i = 0; $i < 5; $i++) {
             $unix_time = intval(array_shift($recent_uses));
             $coefficient = $coefficients[$i];
-            $score += $unix_time * $coefficient;
+            $score += ($unix_time - self::SUBTRACTIVE_FACTOR) * $coefficient;
         }
 
-        $score = $score / 1000000000; // scaling factor
+        $score = $score / self::SCALING_FACTOR;
         $this->link->recent_usage_score = $score;
         $this->link->usage_score_calculated_on = now();
         $this->link->save();
