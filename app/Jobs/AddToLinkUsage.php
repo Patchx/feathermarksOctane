@@ -67,7 +67,7 @@ class AddToLinkUsage implements ShouldQueue
         $recent_uses = json_decode($this->link->recent_uses);
 
         $coefficients = [
-            10, 9, 8, 6, 5
+            10, 10, 8, 6, 6
         ];
 
         $score = 0;
@@ -78,7 +78,7 @@ class AddToLinkUsage implements ShouldQueue
             $score += $unix_time * $coefficient;
         }
 
-        $score = $score / 2000000000; // scaling factor
+        $score = $score / 1000000000; // scaling factor
         $this->link->recent_usage_score = $score;
         $this->link->usage_score_calculated_on = now();
         $this->link->save();
