@@ -51,9 +51,10 @@
 
                     <div class="input-group-append">
                         <button 
-                            :class="plusBtnClasses" 
-                            type="button"
                             v-on:click="activateAddBookmarkMode"
+                            :class="plusBtnClasses" 
+                            tabindex="-1"
+                            type="button"
                         >
                             <i 
                                 v-if="mode === 'add-bookmark'"
@@ -75,9 +76,10 @@
                         </button>
                     
                         <button 
-                            :class="searchBtnClasses" 
-                            type="button"
                             v-on:click="activateSearchMode"
+                            :class="searchBtnClasses" 
+                            tabindex="-1"
+                            type="button"
                         >
                             <i class="fas fa-search"></i>
                         </button>

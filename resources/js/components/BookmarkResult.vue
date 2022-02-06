@@ -26,8 +26,10 @@
         <div class="inline-block">
             <span
                 v-on:click="openBookmarkUrl"
-                class="cursor-pointer btn-link"
+                v-on:keyup.enter="openBookmarkUrl"
+                class="cursor-pointer btn-link bookmark-result"
                 style="font-size:24px"
+                tabindex="0"
             >{{bookmark.name}}</span>
 
             <span

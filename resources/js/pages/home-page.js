@@ -143,6 +143,29 @@ import high_usage_link_component from '../components/HighUsageLink';
 		});
 	}
 
+	function runFeatherCommand(command, vue_app) {
+		axios.post('/links/run-feather-command', {
+			command: command,
+			category_id: vue_app.category_id,
+		}).then((response) => {
+			if (response.data.status === 'command_not_found') {
+				return null;
+			}
+
+			if (response.data.status !== 'success') {
+				console.log(response);
+				alert("There was an error running that command. Please refresh the page and try again");
+			}
+
+			if (response.data.directive === 'open_link') {
+				window.location.href = response.data.url;
+			}
+		}).catch((error) => {
+			alert(error.response.data.message);
+		});
+
+	}
+
 	function searchMyLinks(vue_app) {
 		if (vue_app.main_input_text === '') {
 			return null;
@@ -356,10 +379,12 @@ import high_usage_link_component from '../components/HighUsageLink';
 			},
 
 			searchBarEnterPressed: function() {
-				if (this.mode === 'search'
-					&& this.noBookmarksFound
-				) {
-					return this.redirectToSearchEngine();
+				if (this.mode === 'search') {
+					if (this.noBookmarksFound) {
+						return this.redirectToSearchEngine();
+					} else {
+						return document.getElementsByClassName('bookmark-result')[0].focus();
+					}
 				}
 
 				if (this.mode === 'add-bookmark') {
@@ -369,26 +394,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 				if (this.mode === 'feather') {
 					var command = this.main_input_text;
 					this.main_input_text = '';
-
-					axios.post('/links/run-feather-command', {
-						command: command,
-						category_id: this.category_id,
-					}).then((response) => {
-						if (response.data.status === 'command_not_found') {
-							return null;
-						}
-
-						if (response.data.status !== 'success') {
-							console.log(response);
-							alert("There was an error running that command. Please refresh the page and try again");
-						}
-
-						if (response.data.directive === 'open_link') {
-							window.location.href = response.data.url;
-						}
-					}).catch((error) => {
-						alert(error.response.data.message);
-					});
+					return runFeatherCommand(command, this);
 				}
 			},
 		},
