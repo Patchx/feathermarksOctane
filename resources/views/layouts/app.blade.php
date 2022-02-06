@@ -22,9 +22,11 @@
 
 <body>
     <div id="vue_app">
-        <div 
-            class="text-right mt-20 mr-30"
-        >
+        <div class="mt-20"></div>
+
+        <h5 class="ml-30 text-muted">FeatherMarks</h5>
+
+        <div class="text-right mr-30">
             @guest
                 <a 
                     href="{{ route('login') }}"
@@ -35,7 +37,7 @@
                     <a href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
-                <div>
+                <div style="margin-top:-30px">
                     <h5 
                         class="text-muted"
                         onclick="$('#hover-main-menu').toggle();"
@@ -59,7 +61,7 @@
                             <li>
                                 <select 
                                     class="form-control"
-                                    style="width:110px"
+                                    style="width: 110px"
                                     onchange="window.location.href = '/home?cat_id=' + this.value" 
                                 >
                                     @foreach($categories as $category)
@@ -97,7 +99,7 @@
             @endguest
         </div>
 
-        <main class="mb-10">
+        <main class="mt-30 mb-10">
             @yield('content')
         </main>
     </div>
