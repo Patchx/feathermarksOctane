@@ -129,7 +129,19 @@ import high_usage_link_component from '../components/HighUsageLink';
 				return vue_app.main_input_text = title;
 			}
 		});
-	}	
+	}
+
+	function handleEnterPressedInSearch(vue_app) {
+		if (vue_app.noBookmarksFound) {
+			return vue_app.redirectToSearchEngine();
+		}
+
+		var bookmark = document.getElementsByClassName('bookmark-result')[0];
+
+		if (!!bookmark) {
+			return bookmark.focus();
+		}
+	}
 
 	function loadFrequentlyUsedLinks(vue_app) {
 		var request_url = '/links/frequently-used/' + vue_app.category_id;
@@ -380,11 +392,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 
 			searchBarEnterPressed: function() {
 				if (this.mode === 'search') {
-					if (this.noBookmarksFound) {
-						return this.redirectToSearchEngine();
-					} else {
-						return document.getElementsByClassName('bookmark-result')[0].focus();
-					}
+					return handleEnterPressedInSearch(this);
 				}
 
 				if (this.mode === 'add-bookmark') {
