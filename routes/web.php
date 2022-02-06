@@ -43,5 +43,4 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 // - StaticWebController -
 // -----------------------
 
-Route::get('/search-results', 'App\Http\Controllers\StaticWebController@getSearchResults');
 Route::get('/', 'App\Http\Controllers\StaticWebController@getIndex');

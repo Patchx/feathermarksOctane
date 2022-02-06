@@ -107,6 +107,26 @@
     </div>
 
     <div
+        v-if="noBookmarksFound"
+        v-cloak
+        class="row mt-30"
+    >
+        <div 
+            class="mx-auto"
+            style="max-width:600px"
+        >
+            <p>
+                <span>No Bookmarks Found. Press 'Enter' or </span>
+                <span 
+                    v-on:click="redirectToSearchEngine"
+                    class="text-primary cursor-pointer"
+                >click here</span>
+                <span> to try Google Search.</span>
+            </p>
+        </div>
+    </div>
+
+    <div
         v-if="created_bookmark !== null && mode === 'search'"
         v-cloak
         class="row mt-30"
@@ -123,25 +143,11 @@
         </div>
     </div>
 
-    <div class="row justify-content-center mt-25">        
-        <iframe 
-            :src="searchIframeSrc"
-            v-if="showExternalSearchResults"
-            v-cloak
-            width="100%"
-            height="550px"
-            style="
-                border: 1px solid rgba(0, 0, 0, 0.125);
-                border-radius: 3px;
-            "
-        ></iframe>
-    </div>
-
     <div class="row justify-content-center mt-25">
         <div
             v-if="main_input_text.length < 2"
             v-cloak
-        >                        
+        >
             <span
                 v-if="mode !== 'add-bookmark'"
                 v-cloak

@@ -199,6 +199,14 @@ import high_usage_link_component from '../components/HighUsageLink';
 				return 'Search';
 			},
 
+			noBookmarksFound: function() {
+				if (this.main_input_text.length < 2) {
+					return false;
+				}
+
+				return this.search_result_bookmarks.length < 1;
+			},
+
 			plusBtnClasses: function() {
 				if (this.mode === 'add-bookmark'
 					|| this.mode === 'feather'
@@ -215,24 +223,6 @@ import high_usage_link_component from '../components/HighUsageLink';
 				}
 
 				return 'btn btn-outline-primary';
-			},
-
-			searchIframeSrc: function() {
-				if (this.main_input_text.length < 2) {
-					var input_text = '';
-				} else {
-					var input_text = this.main_input_text;
-				}
-
-				return "/search-results?q=" + input_text;
-			},
-
-			showExternalSearchResults: function() {
-				if (this.mode !== 'search') {
-					return false;
-				}
-
-				return this.main_input_text.length > 1;
 			},
 
 			showFrequentlyUsedLinks: function() {
@@ -358,7 +348,20 @@ import high_usage_link_component from '../components/HighUsageLink';
 				});
 			},
 
+			redirectToSearchEngine: function() {
+				window.location.href = (
+					'https://www.google.com/search?q=' 
+					+ this.main_input_text
+				);
+			},
+
 			searchBarEnterPressed: function() {
+				if (this.mode === 'search'
+					&& this.noBookmarksFound
+				) {
+					return this.redirectToSearchEngine();
+				}
+
 				if (this.mode === 'add-bookmark') {
 					return handleAddBookmarkSubmission(this);
 				}

@@ -10,9 +10,4 @@ class StaticWebController extends Controller
     {
     	return view('main-landing-page');
     }
-
-    public function getSearchResults()
-    {
-    	return view('search-results');
-    }
 }
