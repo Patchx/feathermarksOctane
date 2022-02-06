@@ -87,7 +87,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 		};
 	}
 
-	function getTitleFromUrl(input_url, callback) { 
+	function getTitleFromUrl(input_url, callback) {
 		var request_url = '/url/title/' + input_url;
 
 		axios.get(request_url).then((response) => {
@@ -102,31 +102,33 @@ import high_usage_link_component from '../components/HighUsageLink';
 	};
 
 	function handleAddBookmarkSubmission(vue_app) {
-		if (vue_app.draft_bookmark.url === '') {
-			vue_app.draft_bookmark.url = vue_app.main_input_text;
-			var url = vue_app.main_input_text;
-			vue_app.main_input_text = '';
-			
-			return getTitleFromUrl(url, (title) => {
-				if (vue_app.main_input_text.length < 1) {
-					return vue_app.main_input_text = title;
-				}
-			});
-		}
-
-		if (vue_app.draft_bookmark.name === '') {
-			vue_app.draft_bookmark.name = vue_app.main_input_text;
-			return vue_app.main_input_text = '';
-		}
-
-		if (vue_app.draft_bookmark.search_phrase === '') {
-			vue_app.draft_bookmark.search_phrase = vue_app.main_input_text;
-			return vue_app.main_input_text = '';
-		}
-
-		vue_app.draft_bookmark.instaopen_command = vue_app.main_input_text;
+		var input_text = vue_app.main_input_text;
 		vue_app.main_input_text = '';
-		createLink(vue_app);
+
+		if (vue_app.draft_bookmark.search_phrase !== '') {
+			vue_app.draft_bookmark.instaopen_command = input_text;
+			return createLink(vue_app);
+		}
+
+		if (input_text === '') {
+			return null;
+		}
+
+		if (vue_app.draft_bookmark.name !== '') {
+			return vue_app.draft_bookmark.search_phrase = input_text;
+		}
+
+		if (vue_app.draft_bookmark.url !== '') {
+			return vue_app.draft_bookmark.name = input_text;
+		}
+
+		vue_app.draft_bookmark.url = input_text;
+		
+		return getTitleFromUrl(input_text, (title) => {
+			if (input_text.length < 1) {
+				return vue_app.main_input_text = title;
+			}
+		});
 	}	
 
 	function loadFrequentlyUsedLinks(vue_app) {
@@ -216,7 +218,13 @@ import high_usage_link_component from '../components/HighUsageLink';
 			},
 
 			searchIframeSrc: function() {
-				return "/search-results?q=" + this.main_input_text;
+				if (this.main_input_text.length < 2) {
+					var input_text = '';
+				} else {
+					var input_text = this.main_input_text;
+				}
+
+				return "/search-results?q=" + input_text;
 			},
 
 			showExternalSearchResults: function() {
@@ -224,7 +232,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 					return false;
 				}
 
-				return this.main_input_text !== '';
+				return this.main_input_text.length > 1;
 			},
 
 			showFrequentlyUsedLinks: function() {
@@ -257,7 +265,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 				this.temporary_msg = '';
 				this.created_bookmark = null;
 
-				if (after.length < 1) {
+				if (after.length < 2) {
 					return this.search_result_bookmarks = [];
 				}
 
@@ -293,9 +301,12 @@ import high_usage_link_component from '../components/HighUsageLink';
 
 				this.search_result_bookmarks = [];
 				this.mode = 'search';
+				document.getElementById("search-bar").focus();
 			},
 
 			activateAddBookmarkMode: function() {
+				document.getElementById("search-bar").focus();
+
 				if (this.mode === 'add-bookmark') {
 					return this.searchBarEnterPressed();
 				}

@@ -83,6 +83,8 @@ class AddToLinkUsage implements ShouldQueue
         }
 
         $score = $score / self::SCALING_FACTOR;
+        if ($score < 0) {$score = 0;}
+
         $this->link->recent_usage_score = $score;
         $this->link->usage_score_calculated_on = now();
         $this->link->save();
