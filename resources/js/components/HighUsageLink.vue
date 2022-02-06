@@ -1,12 +1,14 @@
 <template>
     <div
         v-on:click="openBookmarkUrl"
+        v-on:keyup.enter="openBookmarkUrl"
         class="cursor-pointer btn-link inline-block text-center"
         style="
             height:  120px;
             padding: 10px;
             width: 120px;
         "
+        tabindex="0"
     >
         <img
             class="mb-10"
