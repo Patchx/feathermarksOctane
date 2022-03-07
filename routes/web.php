@@ -39,6 +39,12 @@ Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
+// ---------------------
+// - BlogWebController -
+// ---------------------
+
+Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', 'App\Http\Controllers\BlogWebController@getSetFeathermarksAsTheNewTabPageInBrave');
+
 // -----------------------
 // - StaticWebController -
 // -----------------------
