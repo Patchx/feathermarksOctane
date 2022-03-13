@@ -53,6 +53,10 @@
         <main class="mb-10">
             @yield('content')
         </main>
+
+        <footer>
+            <p class="text-center text-muted">Copyright {{date('Y')}}, <a href="https://feathermarks.com">Feathermarks.com</a></p>
+        </footer>
     </div>
 </body>
 </html>

@@ -18,8 +18,36 @@
 }
 
 #hover-main-menu ul li {
-	margin-top: 10px;
 	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.blog-content h4 {
+	margin-bottom: 18px;
+	margin-top: 25px;
+	max-width: 700px;
+}
+
+.blog-content img.blog-image {
+	margin-bottom: 60px;
+	margin-left: 5%;
+	margin-top:  35px;
+	width:  90%;
+}
+
+.blog-content p {
+	font-size: 18px;
+	max-width: 700px;
+}
+
+.blog-footer-feather {
+	opacity: 50%;
+}
+
+.blog-title {
+	margin-bottom: 55px;
+	margin-top: 35px;
+	font-size: 30px;
 }
 
 .code-style {
