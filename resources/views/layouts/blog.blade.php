@@ -55,7 +55,7 @@
         </main>
 
         <footer>
-            <p class="text-center text-muted">Copyright {{date('Y')}}, <a href="https://feathermarks.com">Feathermarks.com</a></p>
+            <p class="text-center text-muted">Copyright {{date('Y')}}, <a href="/">Feathermarks.com</a></p>
         </footer>
     </div>
 </body>

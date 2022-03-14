@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class BlogWebController extends Controller
 {
+    public function getIndex()
+    {
+        return view('blog.index');
+    }
+
     public function getSetFeathermarksAsTheNewTabPageInBrave()
     {
         $data = [

@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$route_prefix = 'App\Http\Controllers';
+
 // === AJAX routes ===
 
-// ---------------------
+// ----------------------
 // - LinkAjaxController -
-// ---------------------
+// ----------------------
 
 Route::post('/links/create', 'App\Http\Controllers\LinkAjaxController@postCreate');
 Route::post('/links/delete/{link_id}', 'App\Http\Controllers\LinkAjaxController@postDelete');
@@ -43,6 +45,7 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 // - BlogWebController -
 // ---------------------
 
+Route::get('/blog', "{$route_prefix}\BlogWebController@getIndex");
 Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', 'App\Http\Controllers\BlogWebController@getSetFeathermarksAsTheNewTabPageInBrave');
 
 // -----------------------
