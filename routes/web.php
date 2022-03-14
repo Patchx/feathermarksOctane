@@ -21,35 +21,35 @@ $route_prefix = 'App\Http\Controllers';
 // - LinkAjaxController -
 // ----------------------
 
-Route::post('/links/create', 'App\Http\Controllers\LinkAjaxController@postCreate');
-Route::post('/links/delete/{link_id}', 'App\Http\Controllers\LinkAjaxController@postDelete');
-Route::post('/links/edit/{link_id}', 'App\Http\Controllers\LinkAjaxController@postEdit');
-Route::get('/links/frequently-used/{category_id}', 'App\Http\Controllers\LinkAjaxController@getFrequentlyUsed');
-Route::post('/links/run-feather-command', 'App\Http\Controllers\LinkAjaxController@postRunFeatherCommand');
-Route::get('/links/search-my-links', 'App\Http\Controllers\LinkAjaxController@getSearchMyLinks');
-Route::post('/links/track-click', 'App\Http\Controllers\LinkAjaxController@postTrackClick');
+Route::post('/links/create', "{$route_prefix}\LinkAjaxController@postCreate");
+Route::post('/links/delete/{link_id}', "{$route_prefix}\LinkAjaxController@postDelete");
+Route::post('/links/edit/{link_id}', "{$route_prefix}\LinkAjaxController@postEdit");
+Route::get('/links/frequently-used/{category_id}', "{$route_prefix}\LinkAjaxController@getFrequentlyUsed");
+Route::post('/links/run-feather-command', "{$route_prefix}\LinkAjaxController@postRunFeatherCommand");
+Route::get('/links/search-my-links', "{$route_prefix}\LinkAjaxController@getSearchMyLinks");
+Route::post('/links/track-click', "{$route_prefix}\LinkAjaxController@postTrackClick");
 
 // ---------------------
 // - UrlAjaxController -
 // ---------------------
 
-Route::get('/url/title/{url}', 'App\Http\Controllers\UrlAjaxController@getTitle');
+Route::get('/url/title/{url}', "{$route_prefix}\UrlAjaxController@getTitle");
 
 // === non-AJAX routes ===
 
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/home', "{$route_prefix}\HomeController@index")->name('home');
 
 // ---------------------
 // - BlogWebController -
 // ---------------------
 
 Route::get('/blog', "{$route_prefix}\BlogWebController@getIndex");
-Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', 'App\Http\Controllers\BlogWebController@getSetFeathermarksAsTheNewTabPageInBrave');
+Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', "{$route_prefix}\BlogWebController@getSetFeathermarksAsTheNewTabPageInBrave");
 
 // -----------------------
 // - StaticWebController -
 // -----------------------
 
-Route::get('/', 'App\Http\Controllers\StaticWebController@getIndex');
+Route::get('/', "{$route_prefix}\StaticWebController@getIndex");
