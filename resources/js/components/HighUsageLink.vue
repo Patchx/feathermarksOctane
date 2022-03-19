@@ -19,6 +19,12 @@
         <div
             style="font-size: 18px"
         >{{bookmark.name.substring(0,10)}}</div>
+
+        <p class="text-muted">
+            <span
+                v-if="bookmark.instaopen_command !== ''"
+            >/{{bookmark.instaopen_command}}</span>
+        </p>
     </div>
 </template>
 

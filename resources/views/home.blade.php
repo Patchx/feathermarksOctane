@@ -180,8 +180,9 @@
 
         <div class="row justify-content-center">
             <high-usage-link
-                v-for="bookmark in this.frequently_used_links"
                 :bookmark="bookmark"
+                :key="index"
+                v-for="(bookmark, index) in this.frequently_used_links"
             ></high-usage-link>
         </div>
     </div>
