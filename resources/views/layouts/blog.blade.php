@@ -34,10 +34,10 @@
                     <a 
                         href="{{ route('login') }}"
                         class="mr-25"
-                    >{{ __('Login') }}</a>
+                    >Login</a>
 
                     @if(Route::has('register'))
-                        <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a href="{{ route('register') }}">Sign Up</a>
                     @endif
                 </div>
             @else

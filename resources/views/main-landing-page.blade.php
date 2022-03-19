@@ -22,8 +22,8 @@
                 margin: 0;
             }
 
-            .full-height {
-                height: 100vh;
+            .content {
+                text-align: center;
             }
 
             .flex-center {
@@ -32,22 +32,8 @@
                 justify-content: center;
             }
 
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
+            .full-height {
+                height: 100vh;
             }
 
             .links > a {
@@ -60,8 +46,54 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
+            .position-ref {
+                position: relative;
+            }
+
+            .subtitle {
+                font-size: 25px;
+                font-weight: 100;
+            }
+
+            .title {
+                font-size: 45px;
+                font-weight: 100;
+            }
+
+            .title-tagline-content {
+                max-width: 600px;
+                padding: 0px 20px;
+            }
+
+            .title-tagline-content h2 {
+                font-size: 20px;
+                font-weight: 100;
+                padding: 0px 20px;
+            }
+
+            @media screen and (min-width: 600px) {
+                .subtitle {
+                    font-size: 30px;
+                }
+
+                .title {
+                    font-size: 60px;
+                }
+
+                .title-tagline-content {
+                    padding: 0px 10px 0px 80px;
+                }
+
+                .title-tagline-content h2 {
+                    font-size: 25px;
+                    padding: 0px;
+                }
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
             }
         </style>
     </head>
@@ -74,23 +106,28 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ route('register') }}">Sign Up</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    <a 
-                        href="/home"
-                        style="color:inherit; text-decoration:inherit"
-                    >Feather Marks <i class="fas fa-feather-alt"></i></a>
-                </div>
+                <h1 class="title">Feather Marks <i class="fas fa-feather-alt"></i></h1>
 
-                <div class="links">
-                    <a href="/register">Bookmarks, but better</a>
+                <h2 class="subtitle">Bookmarks, but better</h2>
+
+                <br>
+
+                <div class="title-tagline-content">
+                    <h2 class="text-left">Fast, smart and totally free. Feathermarks is the power bookmarking tool that lets you move fast and keeps you organized - no matter how many bookmarks you have.</h2>
+
+                    <br>
+
+                    <a
+                        class="btn btn-outline-primary"
+                        href="/register"
+                        style="width: 200px"
+                    >Get Started</a>
                 </div>
             </div>
         </div>
