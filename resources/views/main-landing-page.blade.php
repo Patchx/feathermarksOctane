@@ -116,20 +116,72 @@
             <hr>
             <br>
 
-            <h2 class="d-xs-block d-md-none font-thin mb-20 text-center">Never forget a bookmark</h2>
+            <h2 class="d-xs-block d-md-none font-thin mb-20 text-center">Welcome to the power of search</h2>
 
             <div 
                 class="pl-30 pr-30"
                 style="display:flex"
             >
-                <h2 class="d-none d-md-block font-thin mr-30 mt-30 text-right">Never forget a bookmark</h2>
+                <h2 class="d-none d-md-block font-thin mr-30 mt-30 text-right">Welcome to the power of search</h2>
                 
                 <img 
                     class="full-width"
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647825363/root-page/feathermarks_gif_search_t8swtt.gif"
-                />                
+                />
             </div>
             <br><br>
+
+            <hr>
+            <br>
+
+            <h2 class="d-xs-block d-md-none font-thin mb-20 text-center">Navigate quickly with shortcodes</h2>
+
+            <div 
+                class="pl-30 pr-30"
+                style="display:flex"
+            >                
+                <img 
+                    class="full-width"
+                    src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647827470/root-page/feathermarks_shortcode_search_ho9sgd.gif"
+                />
+
+                <h2 class="d-none d-md-block font-thin ml-30 mt-30 text-left">Navigate quickly with shortcodes</h2>
+            </div>
+            <br><br>
+
+            <hr>
+            <br>
+
+            <h2 class="font-thin mb-20 text-center">Never go to the wrong website again</h2>
+
+            <div 
+                class="mx-auto pl-30 pr-30"
+                style="display:flex; max-width:800px;"
+            >                
+                <img 
+                    class="full-width"
+                    src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647829257/root-page/feathermarks_twitch_issue_s3u0ey.gif"
+                />
+            </div>
+            <br><br>
+        </div>
+
+        <hr>
+
+        <div class="mx-auto text-center">
+            <br><br>
+
+            <h2 class="font-thin">Get started today for free!</h2>
+
+            <br>
+
+            <a
+                class="btn btn-outline-primary"
+                href="/register"
+                style="width: 200px"
+            >Get Started</a>
+
+            <br><br><br>
         </div>
 
         <hr>
