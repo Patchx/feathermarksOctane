@@ -22,20 +22,6 @@
                 margin: 0;
             }
 
-            .content {
-                text-align: center;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -44,10 +30,6 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-            }
-
-            .position-ref {
-                position: relative;
             }
 
             .subtitle {
@@ -89,17 +71,12 @@
                     padding: 0px;
                 }
             }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
         </style>
     </head>
+
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+        <div class="flex-center">
+            @if(Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -111,7 +88,8 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div class="text-center">
+                <br><br><br>
                 <h1 class="title">Feather Marks <i class="fas fa-feather-alt"></i></h1>
 
                 <h2 class="subtitle">Bookmarks, but better</h2>
@@ -131,5 +109,39 @@
                 </div>
             </div>
         </div>
+
+        <br>
+
+        <div class="full-width">
+            <hr>
+            <br>
+
+            <h2 class="d-xs-block d-md-none font-thin mb-20 text-center">Never forget a bookmark</h2>
+
+            <div 
+                class="pl-30 pr-30"
+                style="display:flex"
+            >
+                <h2 class="d-none d-md-block font-thin mr-30 mt-30 text-right">Never forget a bookmark</h2>
+                
+                <img 
+                    class="full-width"
+                    src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647825363/root-page/feathermarks_gif_search_t8swtt.gif"
+                />                
+            </div>
+            <br><br>
+        </div>
+
+        <hr>
+
+        <br>
+        
+        <p class="blog-footer-feather mx-auto text-center text-muted">
+            <i class="fas fa-feather-alt fa-3x"></i>
+        </p>
+
+        <footer class="pb-10">
+            <p class="text-center text-muted">Copyright {{date('Y')}}, <a href="/">Feathermarks.com</a></p>
+        </footer>
     </body>
 </html>
