@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\ApiWrappers\MeilisearchWrapper;
 use App\Classes\Repositories\CategoryRepository;
 use App\Classes\Repositories\LinkRepository;
 use App\Http\Requests\CreateLinkRequest;
@@ -41,24 +42,28 @@ class LinkAjaxController extends Controller
         ]);
     }
 
-    // - This package is broken for this project, but you can use it's examples for how to write the SQL queries:
-    // - https://github.com/yabhq/laravel-scout-mysql-driver
-    // --
     public function getSearchMyLinks(
         CategoryRepository $category_repo,
+        MeilisearchWrapper $meilisearch,
         Request $request
     ) {
         $user = Auth::user();
         $category = $category_repo->getUserCategory($request->cat_id, $user);
         $user_search = $request->q;
 
+        $meili_results = $meilisearch->searchLinks([
+            'query' => $request->q,
+            'user_id' => $user->custom_id,
+            'category_id' => $category->custom_id,
+        ])->getHits();
+
+        $link_ids = array_map(function($result) {
+            return $result['id'];
+        }, $meili_results);
+
         $links = Link::where('user_id', $user->custom_id)
             ->where('category_id', $category->custom_id)
-            ->where(function($query) use ($user_search) {
-                $query->where('name', 'like', '%' . $user_search . '%')
-                    ->orWhere('url', 'like', '%' . $user_search . '%')
-                    ->orWhere('search_phrase', 'like', '%' . $user_search . '%');
-            })
+            ->whereIn('custom_id', $link_ids)
             ->get();
 
         return json_encode([

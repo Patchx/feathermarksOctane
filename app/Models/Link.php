@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Classes\ApiWrappers\MeilisearchWrapper;
+
 class Link extends AbstractModel
 {
     // --------------
@@ -22,6 +24,19 @@ class Link extends AbstractModel
         'recent_usage_score',
         'usage_score_calculated_on',
     ];
+
+    // --------------------
+    // - Parent Overrides -
+    // --------------------
+
+    public function save(array $options = [])
+    {
+        $saved = parent::save($options);
+
+        (new MeilisearchWrapper)->indexLink($this);
+
+        return $saved;
+    }
 
     // -----------------
     // - Relationships -
