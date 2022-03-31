@@ -3,9 +3,8 @@
 namespace App\Classes\ApiWrappers;
 
 use App\Models\Link;
-use MeiliSearch\Client;
 
-// * Ran into issues with Laravel Scout, so just using the PHP SDK directly. (RA, Mar 2022)
+// * Ran into issues with Laravel Scout, so just using curl and Meilisearch directly. (RA, Mar 2022)
 // --
 // * If you want to update the filterable fields on an index:
 // curl -X POST 'http://localhost:7700/indexes/links/settings' -H 'Content-Type: application/json' --data-binary '{"filterableAttributes": ["user_id","category_id"]}'
@@ -24,9 +23,12 @@ class MeilisearchWrapper
 
 	public function indexLink(Link $link)
 	{
-		$client = new Client('http://127.0.0.1:7700');
-
-		$client->index('links')->addDocuments([
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://127.0.0.1:7700/indexes/links/documents');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+				
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
 			[
 				'id' => $link->custom_id,
 				'name' => $link->name,
@@ -34,22 +36,50 @@ class MeilisearchWrapper
 				'user_id' => $link->user_id,
 				'category_id' => $link->category_id,
 			],
+		]));
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Content-Type: application/json',
+			'X-Meili-API-Key: ' . env('MEILISEARCH_MASTER_KEY'),
 		]);
+
+		$result = curl_exec($ch);
+
+		if (curl_errno($ch)) {
+		    echo 'Error:' . curl_error($ch);
+		}
+
+		curl_close($ch);
 	}
 
 	public function searchLinks($inputs)
 	{
-		$client = new Client('http://127.0.0.1:7700');
-		$index = $client->index('links');
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://127.0.0.1:7700/indexes/links/search');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+			'q' => $inputs['query'],
+			'filter' => [
+				'user_id = ' . $inputs['user_id']
+				. ' AND category_id = ' . $inputs['category_id']
+			],
+		]));
 
-		return $index->search(
-			$inputs['query'],
-			[
-				'filter' => [
-					'user_id = ' . $inputs['user_id']
-					. ' AND category_id = ' . $inputs['category_id']
-				]
-			]
-		);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Content-Type: application/json',
+			'X-Meili-API-Key: ' . env('MEILISEARCH_MASTER_KEY'),
+		]);
+
+		$result = curl_exec($ch);
+
+		if (curl_errno($ch)) {
+		    echo 'Error:' . curl_error($ch);
+		}
+
+		curl_close($ch);
+
+		return json_decode($result);
 	}
 }

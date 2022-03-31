@@ -14,7 +14,6 @@
         "laravel/sanctum": "2.13.0",
         "laravel/tinker": "2.6.3",
         "laravel/ui": "3.4.1",
-        "meilisearch/meilisearch-php": "^0.23.1",
         "spiral/roadrunner": "2.6.3"
     },
     "require-dev": {

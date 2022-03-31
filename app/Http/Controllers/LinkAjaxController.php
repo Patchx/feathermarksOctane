@@ -55,10 +55,10 @@ class LinkAjaxController extends Controller
             'query' => $request->q,
             'user_id' => $user->custom_id,
             'category_id' => $category->custom_id,
-        ])->getHits();
-
+        ])->hits;
+        
         $link_ids = array_map(function($result) {
-            return $result['id'];
+            return $result->id;
         }, $meili_results);
 
         $links = Link::where('user_id', $user->custom_id)
