@@ -39,8 +39,8 @@ class MeilisearchWrapper
 		]));
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Authorization: Bearer ' . env('MEILISEARCH_MASTER_KEY'),
 			'Content-Type: application/json',
-			'X-Meili-API-Key: ' . env('MEILISEARCH_MASTER_KEY'),
 		]);
 
 		$result = curl_exec($ch);
@@ -68,8 +68,8 @@ class MeilisearchWrapper
 		]));
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, [
+			'Authorization: Bearer ' . env('MEILISEARCH_MASTER_KEY'),
 			'Content-Type: application/json',
-			'X-Meili-API-Key: ' . env('MEILISEARCH_MASTER_KEY'),
 		]);
 
 		$result = curl_exec($ch);
