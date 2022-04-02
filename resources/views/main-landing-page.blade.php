@@ -102,7 +102,7 @@
                     <br>
 
                     <a
-                        class="btn btn-outline-primary"
+                        class="btn btn-primary"
                         href="/register"
                         style="width: 200px"
                     >Get Started</a>
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <br>
+        <br><br>
 
         <div class="full-width">
             <hr>
@@ -124,9 +124,9 @@
             >
                 <h2 class="d-none d-md-block font-thin mr-30 mt-30 text-right">Welcome to the power of search</h2>
                 
-                <img 
+                <img
+                    class="demo-gif" 
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647825363/root-page/feathermarks_gif_search_t8swtt.gif"
-                    style="max-width:800px"
                 />
             </div>
             <br><br>
@@ -141,8 +141,8 @@
                 style="display:flex; justify-content:center;"
             >                
                 <img 
+                    class="demo-gif"
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647827470/root-page/feathermarks_shortcode_search_ho9sgd.gif"
-                    style="max-width:800px"
                 />
 
                 <h2 class="d-none d-md-block font-thin ml-30 mt-30 text-left">Navigate quickly with shortcodes</h2>
@@ -156,10 +156,10 @@
 
             <div 
                 class="mx-auto pl-30 pr-30"
-                style="display:flex; max-width:800px;"
+                style="display:flex; justify-content:center;"
             >                
                 <img 
-                    class="full-width"
+                    class="demo-gif"
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647829257/root-page/feathermarks_twitch_issue_s3u0ey.gif"
                 />
             </div>
@@ -176,7 +176,7 @@
             <br>
 
             <a
-                class="btn btn-outline-primary"
+                class="btn btn-primary"
                 href="/register"
                 style="width: 200px"
             >Get Started</a>

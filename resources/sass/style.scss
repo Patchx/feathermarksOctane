@@ -62,6 +62,11 @@
 	cursor: pointer;
 }
 
+.demo-gif {
+	max-width: 100%;
+	width: 800px;
+}
+
 .flex-center {
     align-items: center;
     display: flex;
@@ -80,7 +85,9 @@
 	padding: 0px !important;
 }
 
-.inline-block {display: inline-block;}
+.inline-block {
+	display: inline-block;
+}
 
 .links-list-div {
 	font-size: 1.4rem; 
