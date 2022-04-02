@@ -120,13 +120,13 @@
 
             <div 
                 class="pl-30 pr-30"
-                style="display:flex"
+                style="display:flex; justify-content:center;"
             >
                 <h2 class="d-none d-md-block font-thin mr-30 mt-30 text-right">Welcome to the power of search</h2>
                 
                 <img 
-                    class="full-width"
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647825363/root-page/feathermarks_gif_search_t8swtt.gif"
+                    style="max-width:800px"
                 />
             </div>
             <br><br>
@@ -138,11 +138,11 @@
 
             <div 
                 class="pl-30 pr-30"
-                style="display:flex"
+                style="display:flex; justify-content:center;"
             >                
                 <img 
-                    class="full-width"
                     src="https://res.cloudinary.com/feathermarks-com/image/upload/v1647827470/root-page/feathermarks_shortcode_search_ho9sgd.gif"
+                    style="max-width:800px"
                 />
 
                 <h2 class="d-none d-md-block font-thin ml-30 mt-30 text-left">Navigate quickly with shortcodes</h2>
