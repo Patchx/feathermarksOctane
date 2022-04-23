@@ -36,24 +36,27 @@
                         v-cloak
                         class="input-group-prepend"
                     >
-                        <span class="input-group-text" id="basic-addon1">/</span>
+                        <span 
+                            class="input-group-text" 
+                            id="basic-addon1"
+                        >/</span>
                     </div>
 
                     <input 
-                        id="search-bar"
-                        v-model="main_input_text"
-                        v-on:keyup.enter="searchBarEnterPressed"
-                        type="text"
                         autofocus
                         class="form-control" 
+                        id="search-bar"
+                        v-on:keyup.enter="searchBarEnterPressed"
+                        v-model="main_input_text"
+                        type="text"
                     />
 
                     <div class="input-group-append">
                         <button 
-                            v-on:click="activateAddBookmarkMode"
                             :class="plusBtnClasses" 
                             tabindex="-1"
                             type="button"
+                            v-on:click="activateAddBookmarkMode"
                         >
                             <i 
                                 v-if="mode === 'add-bookmark'"
@@ -89,7 +92,7 @@
     </div>
 
     <div 
-        v-if="search_result_bookmarks.length > 0"
+        v-if="mode !== 'feather' && search_result_bookmarks.length > 0"
         v-cloak
         class="row mt-30"
     >
@@ -108,7 +111,7 @@
     </div>
 
     <div
-        v-if="noBookmarksFound"
+        v-if="noBookmarksFound && mode === 'search'"
         v-cloak
         class="row mt-30"
     >
@@ -124,6 +127,32 @@
                 >click here</span>
                 <span> to try Google Search.</span>
             </p>
+        </div>
+    </div>
+
+    <div
+        v-if="showShortcodeUseHint"
+        v-cloak
+        class="row mt-30"
+    >
+        <div 
+            class="mx-auto"
+            style="max-width:600px"
+        >
+            <p>Press 'Enter' to run your shortcode</p>
+        </div>
+    </div>
+
+    <div
+        v-if="show_command_not_found"
+        v-cloak
+        class="row mt-30"
+    >
+        <div 
+            class="mx-auto"
+            style="max-width:600px"
+        >
+            <p>Command not found</p>
         </div>
     </div>
 

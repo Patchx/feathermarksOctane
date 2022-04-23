@@ -39,26 +39,22 @@
             @else
                 <div style="margin-top:-30px">
                     <h5 
-                        class="text-muted"
-                        onclick="$('#hover-main-menu').toggle();"
+                        class="cursor-pointer text-muted"
+                        onclick="$('#hover-main-menu').toggle()"
                     >
-                        {{-- <span>{{ucwords($category)}}&nbsp;</span> --}}
                         <span>{{ucwords($active_category->name)}}&nbsp;</span>
-
                         <i class="fas fa-feather-alt fa-lg text-muted"></i>
                     </h5>
 
                     <section 
                         id="hover-main-menu"
+                        class="text-left" 
                         style="display:none;"
                     >
-                        <ul 
-                            style="
-                                list-style: none;
-                                padding-left: 0px;
-                            "
-                        >
+                        <ul>
                             <li>
+                                <p class="dropdown-label mb-5 text-muted">Category</p>
+
                                 <select 
                                     class="form-control"
                                     style="width: 110px"

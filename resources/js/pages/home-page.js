@@ -161,7 +161,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 			category_id: vue_app.category_id,
 		}).then((response) => {
 			if (response.data.status === 'command_not_found') {
-				return null;
+				return vue_app.show_command_not_found = true;
 			}
 
 			if (response.data.status !== 'success') {
@@ -211,6 +211,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 			main_input_text: '',
 			mode: 'search',
 			search_result_bookmarks: [],
+			show_command_not_found: false,
 			show_searchbar_prepend: false,
 			temporary_msg: '',
 		},
@@ -278,6 +279,24 @@ import high_usage_link_component from '../components/HighUsageLink';
 
 				return false;
 			},
+
+			showShortcodeUseHint: function() {
+				if (this.mode !== 'feather') {
+					return false;
+				}
+
+				if (this.main_input_text.length < 2) {
+					return false;
+				}
+
+				if (this.main_input_text[0] === '/'
+					&& this.main_input_text[1] === '/'
+				) {
+					return false;
+				}
+
+				return true;
+			},
 		},
 
 		mounted: function() {
@@ -289,6 +308,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 			main_input_text: function(after, before) {
 				this.temporary_msg = '';
 				this.created_bookmark = null;
+				this.show_command_not_found = false;
 
 				if (after.length < 2
 					&& after[0] !== '/'
@@ -302,9 +322,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 					return this.activateSearchMode(false);
 				}
 
-				if (after.length === 1
-					&& after[0] === '/'
-				) {
+				if (after[0] === '/') {
 					this.mode = 'feather';
 				}
 

@@ -141,10 +141,16 @@ class LinkAjaxController extends Controller
             return json_encode(['status' => 'link_not_found']);
         }
 
+        $url = $request->url;
+
+        if (!$this->urlStartsWithProtocol($url)) {
+            $url = '//' . $url;
+        }
+
         $instaopen_command = trim($request->instaopen_command, ' /');
 
         $link->name = $request->name;
-        $link->url = $request->url;
+        $link->url = $url;
         $link->search_phrase = $request->search_phrase;
         $link->instaopen_command = $instaopen_command;
         $link->save();
