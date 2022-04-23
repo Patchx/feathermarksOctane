@@ -64,7 +64,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 
 	function getBookmarkCreationTitle(vue_app) {
 		if (vue_app.draft_bookmark.url === '') {
-			return 'New Bookmark: Enter URL';
+			return "New Bookmark: Enter URL - or type 'new' to create a new page!";
 		}
 
 		if (vue_app.draft_bookmark.name === '') {
@@ -99,7 +99,11 @@ import high_usage_link_component from '../components/HighUsageLink';
 		}).catch((error) => {
 			console.log(error);
 		});
-	};
+	}
+
+	function goToPageCreator(vue_app) {
+		return window.location.href = '/page/new?cat_id=' + vue_app.category_id;
+	}
 
 	function handleAddBookmarkSubmission(vue_app) {
 		var input_text = vue_app.main_input_text;
@@ -120,6 +124,10 @@ import high_usage_link_component from '../components/HighUsageLink';
 
 		if (vue_app.draft_bookmark.url !== '') {
 			return vue_app.draft_bookmark.name = input_text;
+		}
+
+		if (input_text === 'new') {
+			return goToPageCreator(vue_app);
 		}
 
 		vue_app.draft_bookmark.url = input_text;
