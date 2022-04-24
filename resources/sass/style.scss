@@ -1,6 +1,19 @@
 
 [v-cloak] {display: none}
 
+::-webkit-input-placeholder {
+   font-style: italic;
+}
+:-moz-placeholder {
+   font-style: italic;  
+}
+::-moz-placeholder {
+   font-style: italic;  
+}
+:-ms-input-placeholder {  
+   font-style: italic; 
+}
+
 #homepage_content * {
 	font-size: 16px;
 }

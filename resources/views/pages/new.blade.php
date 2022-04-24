@@ -75,6 +75,7 @@
                             <input
                                 class="form-control inline-block"
                                 name="instaopen_command"
+                                placeholder="optional"
                                 style="max-width:300px;"
                             />
                         </p>
