@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes\Repositories\CategoryRepository;
+use App\Http\Requests\CreatePageRequest;
 use App\Models\Category;
 use Auth;
 use Illuminate\Http\Request;
@@ -66,7 +67,7 @@ class PagesWebController extends Controller
         return view('pages.new-part-2', $data);
     }
 
-    public function postCreate(Request $request)
+    public function postCreate(CreatePageRequest $request)
     {
         dd($request->all());
     }

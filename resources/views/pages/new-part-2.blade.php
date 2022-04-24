@@ -13,6 +13,14 @@
                 class="mx-auto" 
                 style="max-width:1050px"
             >
+                @if($errors->any())
+                    <div class="text-center">
+                        @foreach($errors->all() as $error)
+                            <p class="mb-5 text-danger">{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
+
                 <h3 class="mb-20 mt-10 text-center">New Page</h3>
 
                 <form 
@@ -36,7 +44,7 @@
 
                             <select 
                                 class="categories-dropdown form-control inline-block"
-                                name="category"
+                                name="category_id"
                             >
                                 @foreach($categories as $category)
                                     <option
@@ -75,11 +83,14 @@
                         <p>
                             <label class="page-editor-label mr-20">Instaopen Command:</label>
 
+                            <span class="mr-5">/</span>
+
                             <input
-                                class="form-control inline-block"
+                                class="text-left form-control inline-block"
+                                maxlength="10"
                                 name="instaopen_command"
                                 placeholder="optional"
-                                style="max-width:300px;"
+                                style="max-width:80px;"
                             />
                         </p>
 
