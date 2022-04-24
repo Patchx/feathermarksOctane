@@ -24,7 +24,15 @@
     <div id="vue_app">
         <div class="mt-20"></div>
 
-        <h5 class="ml-30 text-muted">FeatherMarks</h5>
+        <h5 class="ml-30 text-muted">
+            <a 
+                href="/home"
+                style="
+                    color: inherit;
+                    text-decoration: none;
+                "
+            >FeatherMarks</a>
+        </h5>
 
         <div class="text-right mr-30">
             @guest
@@ -56,8 +64,7 @@
                                 <p class="dropdown-label mb-5 text-muted">Category</p>
 
                                 <select 
-                                    class="form-control"
-                                    style="width: 110px"
+                                    class="categories-dropdown form-control"
                                     onchange="window.location.href = '/home?cat_id=' + this.value" 
                                 >
                                     @foreach($categories as $category)

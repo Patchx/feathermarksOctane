@@ -72,7 +72,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 		}
 
 		if (vue_app.draft_bookmark.search_phrase === '') {
-			return 'Add a search phrase to help find this later';
+			return 'Add search keywords to help find this later';
 		}
 
 		return 'Add an instaopen command (optional)';

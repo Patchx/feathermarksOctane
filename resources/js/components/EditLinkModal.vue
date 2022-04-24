@@ -40,7 +40,7 @@
                     class="form-control mb-15"
                 />
 
-                <p class="edit-link-modal-p">Search Phrase</p>
+                <p class="edit-link-modal-p">Search Keywords</p>
 
                 <input
                     v-model="search_phrase"

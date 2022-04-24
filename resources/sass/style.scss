@@ -58,6 +58,10 @@
 	padding: 0px 15px;
 }
 
+.categories-dropdown {
+	width: 110px;
+}
+
 .code-style {
 	font-family: "Courier New";
 	font-weight: 600;
@@ -98,8 +102,13 @@
 	display: inline-block;
 }
 
-.links-list-div {
-	font-size: 1.4rem; 
+.page-editor-label {
+	font-size: 18px;
+
+	@media screen and (min-width: 600px) {
+		text-align: right;
+		width: 175px;
+	}
 }
 
 .text-center {
