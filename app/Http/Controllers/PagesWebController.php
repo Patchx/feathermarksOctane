@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PageWebController extends Controller
+class PagesWebController extends Controller
 {
     public function getNew(Request $request)
     {

@@ -18,16 +18,16 @@ $route_prefix = 'App\Http\Controllers';
 // === AJAX routes ===
 
 // ----------------------
-// - LinkAjaxController -
+// - LinksAjaxController -
 // ----------------------
 
-Route::post('/links/create', "{$route_prefix}\LinkAjaxController@postCreate");
-Route::post('/links/delete/{link_id}', "{$route_prefix}\LinkAjaxController@postDelete");
-Route::post('/links/edit/{link_id}', "{$route_prefix}\LinkAjaxController@postEdit");
-Route::get('/links/frequently-used/{category_id}', "{$route_prefix}\LinkAjaxController@getFrequentlyUsed");
-Route::post('/links/run-feather-command', "{$route_prefix}\LinkAjaxController@postRunFeatherCommand");
-Route::get('/links/search-my-links', "{$route_prefix}\LinkAjaxController@getSearchMyLinks");
-Route::post('/links/track-click', "{$route_prefix}\LinkAjaxController@postTrackClick");
+Route::post('/links/create', "{$route_prefix}\LinksAjaxController@postCreate");
+Route::post('/links/delete/{link_id}', "{$route_prefix}\LinksAjaxController@postDelete");
+Route::post('/links/edit/{link_id}', "{$route_prefix}\LinksAjaxController@postEdit");
+Route::get('/links/frequently-used/{category_id}', "{$route_prefix}\LinksAjaxController@getFrequentlyUsed");
+Route::post('/links/run-feather-command', "{$route_prefix}\LinksAjaxController@postRunFeatherCommand");
+Route::get('/links/search-my-links', "{$route_prefix}\LinksAjaxController@getSearchMyLinks");
+Route::post('/links/track-click', "{$route_prefix}\LinksAjaxController@postTrackClick");
 
 // ---------------------
 // - UrlAjaxController -
@@ -52,7 +52,7 @@ Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', "{$route_prefi
 // - PageWebController -
 // ---------------------
 
-Route::get('/page/new', "{$route_prefix}\PageWebController@getNew");
+Route::get('/pages/new', "{$route_prefix}\PagesWebController@getNew");
 
 // -----------------------
 // - StaticWebController -

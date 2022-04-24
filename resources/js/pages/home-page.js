@@ -102,7 +102,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 	}
 
 	function goToPageCreator(vue_app) {
-		return window.location.href = '/page/new?cat_id=' + vue_app.category_id;
+		return window.location.href = '/pages/new?cat_id=' + vue_app.category_id;
 	}
 
 	function handleAddBookmarkSubmission(vue_app) {

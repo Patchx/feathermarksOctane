@@ -13,7 +13,7 @@ use App\Models\Link;
 use Auth;
 use Illuminate\Http\Request;
 
-class LinkAjaxController extends Controller
+class LinksAjaxController extends Controller
 {
 	public function __construct()
 	{
