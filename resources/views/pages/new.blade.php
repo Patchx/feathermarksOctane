@@ -6,6 +6,7 @@
     <script src="https://cdn.tiny.cloud/1/qn0u6xfdgfz4vzfccdg8k1uewcqi4pjr1cjaurusuya1zd78/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
+            auto_focus: 'tiny-mce-target',
             height: 700,
             plugins: 'image link lists',
             selector: '#tiny-mce-target',
@@ -22,86 +23,30 @@
                 style="max-width:1050px"
             >
                 <form 
-                    action="/pages/create"
+                    action="/pages/new-html"
                     method="post"
                 >
                     @csrf
 
-                    <div 
-                        class="mx-auto" 
-                        style="max-width:500px"
-                    >
-                        <p>
-                            <label class="page-editor-label mr-20">Category:</label>
+                    <input
+                        name="category_id"
+                        type="hidden"
+                        value="{{$active_category->custom_id}}"
+                    />
 
-                            <select 
-                                class="categories-dropdown form-control inline-block"
-                                name="category"
-                            >
-                                @foreach($categories as $category)
-                                    <option
-                                        value="{{$category->custom_id}}"
-                                        @if($category->custom_id === $active_category->custom_id)
-                                            selected="true"
-                                        @endif 
-                                    >{{ucwords($category->name)}}</option>
-                                @endforeach
-                            </select>
-                        </p>
+                    <h3 class="mb-20 mt-10 text-center">
+                        <span>New Page</span>
 
-                        <p>
-                            <label class="page-editor-label mr-20">Page Name:</label>
+                        <button 
+                            class="btn btn-primary btm-sm inline-block float-right"
+                            type="submit"
+                        >Next &raquo;</button>
+                    </h3>
 
-                            <input
-                                class="form-control inline-block"
-                                name="page_name"
-                                style="max-width:300px;"
-                            />
-                        </p>
-
-                        <p>
-                            <label class="page-editor-label mr-20">Search Keywords:</label>
-
-                            <input
-                                class="form-control inline-block"
-                                name="search_keywords"
-                                style="max-width:300px;"
-                            />
-                        </p>
-
-                        <p>
-                            <label class="page-editor-label mr-20">Instaopen Command:</label>
-
-                            <input
-                                class="form-control inline-block"
-                                name="instaopen_command"
-                                placeholder="optional"
-                                style="max-width:300px;"
-                            />
-                        </p>
-
-                        <p>
-                            <label class="page-editor-label mr-20">Access:</label>
-
-                            <select 
-                                class="form-control inline-block"
-                                name="visibility_level"
-                                style="width:165px"
-                            >
-                                <option
-                                    value="anyone"
-                                >Anyone can view</option>
-
-                                <option
-                                    value="me_only"
-                                >Only I can see</option>
-                            </select>
-                        </p>
-                    </div>
-
-                    <br>
-
-                    <textarea id="tiny-mce-target">Hello, World!</textarea>
+                    <textarea 
+                        id="tiny-mce-target"
+                        name="page_html"
+                    >{{session('new_page_html')}}</textarea>
                 </form>
             </div>
         </div>

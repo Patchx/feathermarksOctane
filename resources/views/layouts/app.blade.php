@@ -102,7 +102,7 @@
             @endguest
         </div>
 
-        <main class="mt-30 mb-10">
+        <main class="mb-10">
             @yield('content')
         </main>
     </div>

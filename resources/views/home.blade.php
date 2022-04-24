@@ -14,7 +14,7 @@
 
 <div 
     id="homepage_content"
-    class="ml-30 mr-30"
+    class="ml-30 mr-30 mt-20"
 >
     <input
         type="hidden"
