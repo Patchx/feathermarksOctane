@@ -152,10 +152,6 @@ class PagesWebController extends Controller
             $instaopen_command = $request->instaopen_command;
 
             if ($instaopen_command === '') {
-                $instaopen_command = null;
-            }
-
-            if ($instaopen_command !== null) {
                 $instaopen_command = trim($request->instaopen_command, ' /');
 
                 Link::where('user_id', $user->custom_id)
