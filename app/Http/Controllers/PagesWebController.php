@@ -151,6 +151,10 @@ class PagesWebController extends Controller
 
             $instaopen_command = $request->instaopen_command;
 
+            if ($instaopen_command === null) {
+                $instaopen_command = '';
+            }
+
             if ($instaopen_command === '') {
                 $instaopen_command = trim($request->instaopen_command, ' /');
 
