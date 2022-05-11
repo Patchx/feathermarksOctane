@@ -143,7 +143,7 @@ class PagesWebController extends Controller
                 'name' => $request->page_name,
                 'page_id' => $page->custom_id,
                 'search_phrase' => $request->search_keywords,
-                'url' => env('APP_URL') . '/page/' . $page->custom_id,
+                'url' => env('APP_URL') . '/pages/' . $page->custom_id,
                 'user_id' => $user->custom_id,
             ]);
 
