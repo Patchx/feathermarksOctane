@@ -56,6 +56,7 @@ Route::post('/pages/create', "{$route_prefix}\PagesWebController@postCreate");
 Route::get('/pages/new', "{$route_prefix}\PagesWebController@getNew");
 Route::post('/pages/new-html', "{$route_prefix}\PagesWebController@postNewHtml");
 Route::get('/pages/new-part-2', "{$route_prefix}\PagesWebController@getNewPart2");
+Route::get('/pages/{page_id}', "{$route_prefix}\PagesWebController@getPage");
 
 // -----------------------
 // - StaticWebController -

@@ -16,7 +16,7 @@ class PagesWebController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('getPage');
     }
 
     public function getNew(
@@ -41,6 +41,33 @@ class PagesWebController extends Controller
         ];
 
         return view('pages.new', $data);
+    }
+
+    public function getPage($page_id)
+    {
+        $page = Page::where('custom_id', $page_id)->first();
+
+        if ($page === null) {
+            abort(404);
+        }
+
+        $data = [
+            'page' => $page,
+        ];
+
+        if ($page->visibility === 'anyone') {
+            return view('pages.page', $data);
+        }
+
+        $user = Auth::user();
+
+        if ($user === null
+            || $user->custom_id !== $page->user_id
+        ) {
+            abort(403);
+        }
+
+        return view('pages.page', $data);
     }
 
     public function getNewPart2(Request $request)
