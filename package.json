@@ -14,7 +14,7 @@
         "tab:build:open-site": "ttab -t 'Openning Site' php artisan serve",
         "tab:build:open-site-octane": "ttab -t 'Openning Site' php artisan octane:start --watch",
         "tab:build:js-tests": "ttab -t 'Js Tests' npm run test",
-        "tab:build:php-tests": "ttab -t 'PHP Tests' phpunit",
+        "tab:build:php-tests": "ttab -t 'PHP Tests' ./vendor/bin/pest",
         "test": "mocha-webpack js_tests/**/*.spec.js --require test-setup",
         "test-all": "run-s tab:build:js-tests tab:build:php-tests"
     },

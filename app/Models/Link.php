@@ -23,6 +23,7 @@ class Link extends AbstractModel
         'recent_uses',
         'recent_usage_score',
         'usage_score_calculated_on',
+        'page_id',
     ];
 
     // --------------------

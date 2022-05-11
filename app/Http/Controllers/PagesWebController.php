@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Classes\Repositories\CategoryRepository;
 use App\Http\Requests\CreatePageRequest;
 use App\Models\Category;
+use App\Models\Link;
+use App\Models\Page;
+use App\Models\User;
 use Auth;
+use DB;
 use Illuminate\Http\Request;
 
 class PagesWebController extends Controller
@@ -69,7 +73,21 @@ class PagesWebController extends Controller
 
     public function postCreate(CreatePageRequest $request)
     {
-        dd($request->all());
+        $user = Auth::user();
+
+        $category = Category::where('custom_id', $request->category_id)
+            ->where('user_id', $user->custom_id)
+            ->first();
+
+        if ($category === null) {
+            abort(403);
+        }
+
+        $save_result = $this->savePageAndLink($request, $user);
+
+        return redirect()->to('/home')->with(
+            'success_msg', "Page created successfully!"
+        );
     }
 
     public function postNewHtml(Request $request)
@@ -89,5 +107,54 @@ class PagesWebController extends Controller
         session(['new_page_html' => $request->page_html]);
 
         return redirect()->to('/pages/new-part-2');
+    }
+
+    // -------------------
+    // - Private Methods -
+    // -------------------
+
+    private function savePageAndLink(Request $request, User $user)
+    {
+        DB::transaction(function() use ($request, $user) {
+            $page = Page::create([
+                'user_id' => $user->custom_id,
+                'html' => $request->page_html,
+                'visibility' => $request->visibility_level,
+            ]);
+
+            $instaopen_command = $request->instaopen_command;
+
+            if ($instaopen_command === '') {
+                $instaopen_command = null;
+            }
+
+            if ($instaopen_command !== null) {
+                $instaopen_command = trim($request->instaopen_command, ' /');
+
+                Link::where('user_id', $user->custom_id)
+                    ->where('instaopen_command', $instaopen_command)
+                    ->where('category_id', $request->category_id)
+                    ->update(['instaopen_command' => '']);
+            }
+
+            $link = Link::create([
+                'category_id' => $request->category_id,
+                'instaopen_command' => $instaopen_command,
+                'name' => $request->page_name,
+                'page_id' => $page->custom_id,
+                'search_phrase' => $request->search_keywords,
+                'url' => env('APP_URL') . '/page/' . $page->custom_id,
+                'user_id' => $user->custom_id,
+            ]);
+
+            $page->link_id = $link->custom_id;
+            $page->save();
+
+            return [
+                'link' => $link,
+                'page' => $page,
+                'status' => 'success',
+            ];
+        });
     }
 }

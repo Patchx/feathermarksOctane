@@ -22,6 +22,13 @@
         value="{{$active_category->custom_id}}"
     />
 
+    @if(session('success_msg'))
+        <div 
+            class="alert alert-success mb-20 mx-auto"
+            style="max-width:200px;"
+        >{{session('success_msg')}}</div>
+    @endif
+
     <div class="row">
         <div class="col-12">
             <div 
