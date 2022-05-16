@@ -31,6 +31,7 @@
                     color: inherit;
                     text-decoration: none;
                 "
+                tabindex="-1"
             >FeatherMarks</a>
         </h5>
 
