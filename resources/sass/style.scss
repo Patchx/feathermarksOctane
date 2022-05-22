@@ -40,6 +40,36 @@
 	margin-top: 10px;
 }
 
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-o-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-moz-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes flickerAnimation{
+  0%   { opacity:1; }
+  50%  { opacity:0; }
+  100% { opacity:1; }
+}
+.animate-flicker {
+   -webkit-animation: flickerAnimation 2s infinite;
+   -moz-animation: flickerAnimation 2s infinite;
+   -o-animation: flickerAnimation 2s infinite;
+    animation: flickerAnimation 2s infinite;
+}
+
 .blog-content h4 {
 	margin-bottom: 18px;
 	margin-top: 25px;

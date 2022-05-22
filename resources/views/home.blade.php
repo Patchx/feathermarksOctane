@@ -94,6 +94,12 @@
                         </button>
                     </div>
                 </div>
+
+                <p 
+                    v-if="showing_loading_text"
+                    v-cloak
+                    class="animate-flicker mt-10 mb-15 text-center text-muted"
+                >Loading..</p>
             </div>
         </div>
     </div>

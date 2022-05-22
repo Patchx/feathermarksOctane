@@ -70,13 +70,17 @@ import high_usage_link_component from '../components/HighUsageLink';
 	function displayAllBookmarks(vue_app) {
 		var request_url = '/links/all-links/' + vue_app.category_id;
 		vue_app.mode = 'search';
+		vue_app.showing_loading_text = true;
 
 		axios.get(request_url).then((response) => {
 			if (response.data.status === 'success') {
 				vue_app.search_result_bookmarks = response.data.links;
 			}
+
+			vue_app.showing_loading_text = false;
 		}).catch((error) => {
 			console.log(error);
+			vue_app.showing_loading_text = false;
 		});
 	}
 
@@ -238,6 +242,7 @@ import high_usage_link_component from '../components/HighUsageLink';
 			mode: 'search',
 			search_result_bookmarks: [],
 			show_command_not_found: false,
+			showing_loading_text: false,
 			show_searchbar_prepend: false,
 			temporary_msg: '',
 		},
