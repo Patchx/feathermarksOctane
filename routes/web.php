@@ -21,6 +21,7 @@ $route_prefix = 'App\Http\Controllers';
 // - LinksAjaxController -
 // ----------------------
 
+Route::get('/links/all-links/{category_id}', "{$route_prefix}\LinksAjaxController@getAllLinks");
 Route::post('/links/create', "{$route_prefix}\LinksAjaxController@postCreate");
 Route::post('/links/delete/{link_id}', "{$route_prefix}\LinksAjaxController@postDelete");
 Route::post('/links/edit/{link_id}', "{$route_prefix}\LinksAjaxController@postEdit");

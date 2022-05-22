@@ -195,14 +195,19 @@
             </span>
                         
             <span
-                v-if="mode !== 'search'"
+                v-else-if="mode !== 'search'"
                 v-cloak
             >
                 <span>Type&nbsp;</span>
                 <span class="code-style">//s</span>
                 <span>&nbsp; to switch back to search mode</span>
             </span>
+
             <br>
+
+            <span>Type&nbsp;</span>
+            <span class="code-style">//a</span>
+            <span>&nbsp; to show all bookmarks</span>
         </div>
     </div>
 

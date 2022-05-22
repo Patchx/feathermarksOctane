@@ -20,6 +20,29 @@ class LinksAjaxController extends Controller
 		$this->middleware('auth');
 	}
 
+    public function getAllLinks($category_id)
+    {
+        $user = Auth::user();
+
+        $category = Category::where('custom_id', $category_id)
+            ->where('user_id', $user->custom_id)
+            ->first();
+
+        if ($category === null) {
+            return json_encode(['status' => 'category_not_found']);
+        }
+
+        $links = Link::where('user_id', $user->custom_id)
+            ->where('category_id', $category->custom_id)
+            ->orderBy('name')
+            ->get();
+
+        return json_encode([
+            'status' => 'success',
+            'links' => $links,
+        ]);
+    }
+
     public function getFrequentlyUsed(
         LinkRepository $link_repo,
         $category_id
