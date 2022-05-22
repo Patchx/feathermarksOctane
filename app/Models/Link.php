@@ -43,6 +43,11 @@ class Link extends AbstractModel
     // - Relationships -
     // -----------------
 
+    public function page()
+    {
+        return Page::where('custom_id', $this->page_id)->first();
+    }
+
     public function user()
     {
         return User::where('custom_id', $this->user_id)->first();

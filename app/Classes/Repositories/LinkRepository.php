@@ -14,4 +14,23 @@ class LinkRepository
 			->limit(8)
 			->get();
 	}
+
+	public function linkPointsToMyPage(Link $link, $user_id)
+	{
+	    if ($link->user_id !== $user_id) {
+	        return false;
+	    }
+
+	    if ($link->page_id === null) {
+	        return false;
+	    }
+
+	    $page = $link->page();
+
+	    if ($page === null) {
+	        return false;
+	    }
+
+	    return $page->user_id === $user_id;
+	}
 }

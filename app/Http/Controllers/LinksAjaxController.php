@@ -135,19 +135,31 @@ class LinksAjaxController extends Controller
         ]);
     }
 
-    public function postDelete($link_id)
-    {
+    public function postDelete(
+        LinkRepository $link_repo,
+        $link_id
+    ) {
         $user = Auth::user();
 
         $link = Link::where('custom_id', $link_id)
             ->where('user_id', $user->custom_id)
             ->first();
 
-        if ($link !== null) {
-            $link->delete();
+        if ($link === null) {
+            return json_encode(['status' => 'success']);
         }
 
-        return json_encode(['status' => 'success']);
+        $deleting_my_page_link = $link_repo->linkPointsToMyPage(
+            $link, $user->custom_id
+        );
+        
+        $link->delete();
+
+        return json_encode([
+            'status' => 'success',
+            'deleted_my_page_link' => $deleting_my_page_link,
+            'page_id' => $link->page_id,
+        ]);
     }
 
     public function postEdit(

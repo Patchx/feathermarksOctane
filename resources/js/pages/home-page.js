@@ -50,6 +50,21 @@ import high_usage_link_component from '../components/HighUsageLink';
 		};
 	})();
 
+	function deletePage(page_id, vue_app) {
+		var request_url = '/pages/delete/' + page_id;
+
+		axios.post(request_url, {}).then((response) => {
+			if (response.data.status !== 'success') {
+				console.log(response);
+				alert("There was an error deleting your page. Please refresh the page and try again");
+			}
+
+			vue_app.activateSearchMode(true);
+		}).catch((error) => {
+			alert(error.response.data.message);
+		});
+	}
+
 	function detectFeatherCommand(vue_app) {
 		if (vue_app.main_input_text.trim() === '//a') {
 			vue_app.main_input_text = '';
@@ -414,6 +429,12 @@ import high_usage_link_component from '../components/HighUsageLink';
 					}
 
 					this.search_result_bookmarks = [];
+
+					if (response.data.deleted_my_page_link
+						&& confirm("Do you want to delete the page as well? Anyone currently allowed to see that page will lose access.")
+					) {
+						deletePage(response.data.page_id, this);
+					}
 				}).catch((error) => {
 					alert(error.response.data.message);
 				});

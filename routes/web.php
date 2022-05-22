@@ -17,6 +17,12 @@ $route_prefix = 'App\Http\Controllers';
 
 // === AJAX routes ===
 
+// -----------------------
+// - PagesAjaxController -
+// -----------------------
+
+Route::post('/pages/delete/{page_id}', "{$route_prefix}\PagesAjaxController@postDelete");
+
 // ----------------------
 // - LinksAjaxController -
 // ----------------------

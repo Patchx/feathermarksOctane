@@ -45,10 +45,16 @@ class PagesWebController extends Controller
 
     public function getPage($page_id)
     {
-        $page = Page::where('custom_id', $page_id)->first();
+        $page = Page::where('custom_id', $page_id)
+            ->withTrashed()
+            ->first();
 
         if ($page === null) {
             abort(404);
+        }
+
+        if ($page->deleted_at !== null) {
+            return view('pages.deleted-page');
         }
 
         $data = [
