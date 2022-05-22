@@ -10,6 +10,7 @@ use App\Http\Requests\EditLinkRequest;
 use App\Jobs\AddToLinkUsage;
 use App\Models\Category;
 use App\Models\Link;
+use App\Models\Page;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -119,14 +120,16 @@ class LinksAjaxController extends Controller
                 ->update(['instaopen_command' => '']);
         }
 
+        $page_id = $this->getPageIdFromUrl($url);
+
     	$new_link = Link::create([
-    		'user_id' => $user->custom_id,
-    		'folder_id' => null,
     		'category_id' => $category->custom_id,
-    		'name' => $request->name,
-    		'url' => $url,
-            'search_phrase' => $request->search_phrase,
             'instaopen_command' => $instaopen_command,
+    		'name' => $request->name,
+            'page_id' => $page_id,
+            'search_phrase' => $request->search_phrase,
+    		'url' => $url,
+            'user_id' => $user->custom_id,
     	]);
 
         return json_encode([
@@ -246,6 +249,19 @@ class LinksAjaxController extends Controller
     // -------------------
     // - Private Methods -
     // -------------------
+
+    private function getPageIdFromUrl($url)
+    {
+        $page_prefix = env('APP_URL') . '/pages/';
+        $page_id = str_replace($page_prefix, '', $url);
+        $page = Page::where('custom_id', $page_id)->first();
+
+        if ($page === null) {
+            return null;
+        }
+
+        return $page->custom_id;
+    }
 
     private function urlStartsWithProtocol($url)
     {
