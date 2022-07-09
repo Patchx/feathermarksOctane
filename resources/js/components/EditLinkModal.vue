@@ -8,6 +8,7 @@
     <modal 
         name="edit-link-modal"
         v-on:before-open="handleBeforeOpen"
+        v-on:opened="handleOnOpen"
         width="350"
         height="auto"
         :scrollable="true"
@@ -31,6 +32,8 @@
                 <input
                     v-model="link_name"
                     class="form-control mb-15"
+                    maxlength="100"
+                    ref="name_input"
                 />
 
                 <p class="edit-link-modal-p">URL</p>
@@ -45,6 +48,7 @@
                 <input
                     v-model="search_phrase"
                     class="form-control mb-15"
+                    maxlength="100"
                 />
 
                 <p class="edit-link-modal-p">Instaopen Command</p>
@@ -52,6 +56,7 @@
                 <input
                     v-model="instaopen_command"
                     class="form-control mb-15"
+                    maxlength="10"
                 />
 
                 <button
@@ -91,6 +96,10 @@ module.exports = (function() {
                 this.link_name = props.name;
                 this.link_url = props.url;
                 this.search_phrase = props.search_phrase;
+            },
+
+            handleOnOpen: function(event) {
+                this.$refs.name_input.focus();
             },
 
             submitForm: function() {
