@@ -7,9 +7,11 @@
         <title>FeatherMarks</title>
 
         <!-- Fonts -->
+        <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito:200,600" as="font">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="preload" href="{{ mix('/wp/css/app.css') }}" as="style">
         <link href="{{ mix('/wp/css/app.css') }}" rel="stylesheet">
 
         <style>

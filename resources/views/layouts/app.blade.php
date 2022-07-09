@@ -11,11 +11,14 @@
     <title>@yield('title', 'FeatherMarks')</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Nunito" as="font">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="preload" href="{{ mix('/wp/css/app.css') }}" as="style">
     <link href="{{ mix('/wp/css/app.css') }}" rel="stylesheet">
+
+    <link rel="preload" href="{{ mix('/wp/js/app.js') }}" as="script">
 
     @yield('head_unique')
 </head>
