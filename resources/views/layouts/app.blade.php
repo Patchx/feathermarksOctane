@@ -60,12 +60,12 @@
 
                     <section 
                         id="hover-main-menu"
-                        class="text-left" 
+                        class="text-left text-muted" 
                         style="display:none;"
                     >
-                        <ul>
-                            <li>
-                                <p class="dropdown-label mb-5 text-muted">Category</p>
+                        <ul class="mb-10">
+                            <li class="mb-30">
+                                <p class="dropdown-label mb-5">Category</p>
 
                                 <select 
                                     class="categories-dropdown form-control"
@@ -83,6 +83,15 @@
                             </li>
 
                             <li>
+                                <p>
+                                    <a
+                                        class="text-muted"
+                                        href="/categories"
+                                    >Edit Categories</a>
+                                </p>
+                            </li>
+
+                            <li class="mb-0">
                                 <form 
                                     action="{{ route('logout') }}" 
                                     method="POST" 
@@ -91,12 +100,12 @@
                                     @csrf
 
                                     <button
-                                        type="submit"
                                         class="btn btn-link ml-10 text-muted"
                                         style="
                                             padding: 0px;
                                             margin: 0px;
                                         "
+                                        type="submit"
                                     >Logout</button>
                                 </form>
                             </li>

@@ -55,6 +55,13 @@ Route::get('/home', "{$route_prefix}\HomeController@index")->name('home');
 Route::get('/blog', "{$route_prefix}\BlogWebController@getIndex");
 Route::get('/blog/set-feathermarks-as-the-new-tab-page-in-brave', "{$route_prefix}\BlogWebController@getSetFeathermarksAsTheNewTabPageInBrave");
 
+// -------------------------
+// - CategoryWebController -
+// -------------------------
+
+Route::get('/categories', "{$route_prefix}\CategoryWebController@getIndex");
+Route::post('/categories', "{$route_prefix}\CategoryWebController@postIndex");
+
 // ---------------------
 // - PageWebController -
 // ---------------------
